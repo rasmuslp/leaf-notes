@@ -7,4 +7,5 @@ pycodestyle==2.6.0
 pyflakes==2.2.0
 pylint==2.7.1
 toml==0.10.2
+-e git+https://github.com/waveshare/e-Paper.git@e51fcad44477743ee1f07a04900763e0e67d1366#egg=waveshare_epd&subdirectory=RaspberryPi_JetsonNano/python
 wrapt==1.12.1

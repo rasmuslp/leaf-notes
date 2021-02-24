@@ -16,3 +16,23 @@ ignore=.git/,.venv/
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 disable=line-too-long # C0301
+
+[BASIC]
+
+# Naming style matching correct argument names.
+argument-naming-style=camelCase
+
+# Naming style matching correct attribute names.
+attr-naming-style=camelCase
+
+# Naming style matching correct function names.
+function-naming-style=camelCase
+
+# Naming style matching correct method names.
+method-naming-style=camelCase
+
+# Naming style matching correct module names.
+# module-naming-style=PascalCase
+
+# Naming style matching correct variable names.
+variable-naming-style=camelCase

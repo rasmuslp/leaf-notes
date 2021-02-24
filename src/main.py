@@ -4,7 +4,7 @@ import os
 
 import yaml
 
-from Quote import Quote
+from quote import Quote
 
 stream = open('quotes.yml', 'r')
 try:

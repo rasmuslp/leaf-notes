@@ -16,19 +16,19 @@ except yaml.YAMLError as exc:
 stream.close()
 
 
-def createQuote(data):
+def isQuoteDefinitionValid(quoteDefinition):
     required = ['quote']
-    requiredSatisfied = all(key in data.keys() for key in required)
+    requiredSatisfied = all(key in quoteDefinition.keys() for key in required)
     if not requiredSatisfied:
         print('"quote" needs to be defined, but is missing for object:')
-        pprint(data)
+        pprint(quoteDefinition)
         print()
-        return
+        return False
 
-    return Quote(**data)
+    return True
 
 
-quotes = list(filter(None, map(createQuote, quoteDefinitions)))
+quotes = list(map(lambda data: Quote(**data), filter(isQuoteDefinitionValid, quoteDefinitions)))
 randomQuote = random.choice(quotes)
 print(randomQuote.quote)
 print('                - ' + randomQuote.author)

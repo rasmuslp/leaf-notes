@@ -1,15 +1,28 @@
+from pprint import pprint
 import random
+
+import yaml
 
 from Quote import Quote
 
-quotes = []
+stream = open('quotes.yml', 'r')
+quoteDefinitions = yaml.load(stream, Loader=yaml.SafeLoader)
+stream.close()
 
-quotes.append(Quote('Yogi Bhajan', 'The greatest education man has to learn is the science of self.'))
-quotes.append(Quote('Yogi Bhajan', 'When the prayer becomes the vibration of the mind and self, then we can create a miracle.', 'PRAY'))
-quotes.append(Quote('Yogi Bhajan', 'There are three values: Feel good, be good and do good.'))
-quotes.append(Quote('Yogi Bhajan', 'Consult your spirit, your soul on everything.', 'LISTEN'))
-quotes.append(Quote('Yogi Bhajan', 'If you are happy, happiness will come to you because happiness wants to go where happiness is.', 'BE LIGHT'))
 
+def createQuote(data):
+    required = ['quote']
+    requiredSatisfied = all(key in data.keys() for key in required)
+    if not requiredSatisfied:
+        print('"quote" needs to be defined, but is missing for object:')
+        pprint(data)
+        print()
+        return
+
+    return Quote(**data)
+
+
+quotes = list(filter(None, map(createQuote, quoteDefinitions)))
 randomQuote = random.choice(quotes)
-
 print(randomQuote.quote)
+print('                - ' + randomQuote.author)

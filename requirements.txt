@@ -3,9 +3,12 @@ flake8==3.8.4
 isort==5.7.0
 lazy-object-proxy==1.5.2
 mccabe==0.6.1
+pathspec==0.8.1
 pycodestyle==2.6.0
 pyflakes==2.2.0
 pylint==2.7.1
+PyYAML==5.4.1
 toml==0.10.2
 -e git+https://github.com/waveshare/e-Paper.git@e51fcad44477743ee1f07a04900763e0e67d1366#egg=waveshare_epd&subdirectory=RaspberryPi_JetsonNano/python
 wrapt==1.12.1
+yamllint==1.26.0

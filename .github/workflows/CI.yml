@@ -1,16 +1,15 @@
 ---
 name: CI
 
+# yamllint disable-line rule:truthy
 on: [push]
 
 jobs:
   flake8:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9]
-
+        python-version: [3.9]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -20,8 +19,7 @@ jobs:
       - name: Cache pip
         uses: actions/cache@v2
         with:
-          # This path is specific to Ubuntu
-          path: ~/.cache/pip
+          path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
       - name: Create .venv and install pip dependencies
@@ -36,12 +34,10 @@ jobs:
           flake8 .
 
   pylint:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9]
-
+        python-version: [3.9]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -51,7 +47,6 @@ jobs:
       - name: Cache pip
         uses: actions/cache@v2
         with:
-          # This path is specific to Ubuntu
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
@@ -65,3 +60,31 @@ jobs:
         run: |
           source .venv/bin/activate
           pylint src
+
+  yamllint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
+      - name: Create .venv and install pip dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint with pylint
+        run: |
+          source .venv/bin/activate
+          yamllint -s .

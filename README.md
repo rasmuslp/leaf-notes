@@ -1,5 +1,7 @@
 # leaf-notes
 
+![CI](https://github.com/rasmuslp/leaf-notes/workflows/CI/badge.svg)
+
 ## Getting started
 Create and activate virtual environment for packages
 ```

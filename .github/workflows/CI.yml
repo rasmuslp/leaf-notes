@@ -24,12 +24,15 @@ jobs:
           path: ~/.cache/pip
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
-      - name: Install pip dependencies
+      - name: Create .venv and install pip dependencies
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Lint with flake8
         run: |
+          source .venv/bin/activate
           flake8 .
 
   pylint:
@@ -49,13 +52,16 @@ jobs:
         uses: actions/cache@v2
         with:
           # This path is specific to Ubuntu
-          path: ~/.cache/pip
+          path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
-      - name: Install pip dependencies
+      - name: Create .venv and install pip dependencies
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Lint with pylint
         run: |
+          source .venv/bin/activate
           pylint src

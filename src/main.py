@@ -1,12 +1,18 @@
 from pprint import pprint
 import random
+import os
 
 import yaml
 
 from Quote import Quote
 
 stream = open('quotes.yml', 'r')
-quoteDefinitions = yaml.load(stream, Loader=yaml.SafeLoader)
+try:
+    quoteDefinitions = yaml.load(stream, Loader=yaml.SafeLoader)
+except yaml.YAMLError as exc:
+    print('Cannot parse quotes.yml', exc)
+    os._exit(1)
+
 stream.close()
 
 

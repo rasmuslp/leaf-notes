@@ -18,4 +18,6 @@ deactivate
 * https://github.com/waveshare/e-Paper - eInk display interface
 * https://github.com/PyCQA/flake8 - Tooling
 * https://github.com/PyCQA/pylint - Tooling
+    * List of builtin rules: http://pylint.pycqa.org/en/latest/technical_reference/features.html
+    * `pylint --generate-rcfile | less` to generate a rules reference
 

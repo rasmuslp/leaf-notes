@@ -14,14 +14,20 @@ Deactivate virtual environment
 deactivate
 ```
 
+## Running the program
+Be sure this is python3 at this point
+```
+python src/main.py
+```
+
 ## Upgrading packages
-1. 
+1. Be sure to deactivate venv, iff active
     ```
     deactivate
     ```
-2. 
+2. Remove the venv
     ```
-    rm -rf .venv requirements.txt
+    rm -rf .venv
     ```
 3. Recreate venv and `activate`
     ```

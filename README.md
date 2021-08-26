@@ -14,8 +14,42 @@ Deactivate virtual environment
 deactivate
 ```
 
-## Projects used
+## Upgrading packages
+1. 
+    ```
+    deactivate
+    ```
+2. 
+    ```
+    rm -rf .venv requirements.txt
+    ```
+3. Recreate venv and `activate`
+    ```
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+4. Upgrade pip
+    ```
+    pip install --upgrade pip
+    ```
+4. Install packages
+    ```
+    pip install -e 'git+https://github.com/waveshare/e-Paper.git#egg=waveshare-epd&subdirectory=RaspberryPi_JetsonNano/python'
+    pip install pyyaml
+    pip install flake8
+    pip install pylint
+    pip install yamllint
+    ```
+5. Freeze
+    ```
+    pip freeze > requirements.txt
+    ```
+
+### Projects used
 * https://github.com/waveshare/e-Paper - eInk display interface
+    * This installs deps for Jetson!
+        * https://github.com/waveshare/e-Paper/blob/master/RaspberryPi_JetsonNano/python/setup.py
+    * Consider https://github.com/txoof/epdlib ???
 * https://github.com/yaml/pyyaml/ - Yaml loader / (de)serializer
     * https://pyyaml.org/wiki/PyYAMLDocumentation
 * https://github.com/PyCQA/flake8 - Tooling

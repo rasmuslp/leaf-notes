@@ -1,18 +1,11 @@
-astroid==2.7.2
-flake8==3.9.2
-isort==5.9.3
-Jetson.GPIO==2.0.17
-lazy-object-proxy==1.6.0
-mccabe==0.6.1
+certifi==2021.5.30
+charset-normalizer==2.0.4
+epdlib==0.5.0.4
+idna==3.2
 numpy==1.21.2
-pathspec==0.9.0
 Pillow==8.3.1
-platformdirs==2.2.0
-pycodestyle==2.7.0
-pyflakes==2.3.1
-pylint==2.10.2
-PyYAML==5.4.1
-toml==0.10.2
+requests==2.26.0
+RPi.GPIO==0.7.1a4
+spidev==3.5
+urllib3==1.26.6
 -e git+https://github.com/waveshare/e-Paper.git@1ac5cbad562ed58c678ba0d6f3f833612ec53320#egg=waveshare_epd&subdirectory=RaspberryPi_JetsonNano/python
-wrapt==1.12.1
-yamllint==1.26.3

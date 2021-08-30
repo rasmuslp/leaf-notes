@@ -11,6 +11,18 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \ 
         git \
+    libffi-dev \
+    libfreetype6-dev \
+    libfribidi-dev \
+    libharfbuzz-dev \
+        libjpeg-turbo-progs \
+        libjpeg62-turbo-dev \
+    liblcms2-dev \
+    libopenjp2-7-dev \
+    libtiff5-dev \
+    libwebp-dev \
+    netpbm \
+        zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m venv "$VIRTUAL_ENV"

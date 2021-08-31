@@ -1,5 +1,9 @@
 # leaf-notes
 
+> An application that generates information to be displayed on a small e-ink screen attached to a Raspberry Pi Zero W.
+
+Provided as a Docker image, that through SPI / GPIO controls an e-ink screen.
+
 ![CI](https://github.com/rasmuslp/leaf-notes/workflows/CI/badge.svg)
 
 ## Getting started
@@ -70,10 +74,11 @@ Finally, install needed requirements files.
 * https://github.com/waveshare/e-Paper - eInk display interface
     * This installs deps for Jetson!
         * https://github.com/waveshare/e-Paper/blob/master/RaspberryPi_JetsonNano/python/setup.py
-    * Consider https://github.com/txoof/epdlib ???
+    * Consider https://github.com/txoof/epdlib ??? - Rrequires spidev and RPi.GPIO, which cant install on mac.... 
 * https://github.com/yaml/pyyaml/ - Yaml loader / (de)serializer
     * https://pyyaml.org/wiki/PyYAMLDocumentation
 * https://github.com/PyCQA/flake8 - Tooling
+    * https://flake8.pycqa.org/en/latest/index.html
 * https://github.com/PyCQA/pylint - Tooling
     * List of builtin rules: http://pylint.pycqa.org/en/latest/technical_reference/features.html
     * `pylint --generate-rcfile | less` to generate a rules reference

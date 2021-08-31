@@ -1,5 +1,8 @@
 # Base definition
 FROM python:3.9.6-slim as base
+
+LABEL org.opencontainers.image.source https://github.com/rasmuslp/leaf-notes
+
 WORKDIR /usr/src/app
 ENV VIRTUAL_ENV=/usr/src/app/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

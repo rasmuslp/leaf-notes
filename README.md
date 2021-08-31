@@ -38,18 +38,33 @@ python src/main.py
     ```
     pip install --upgrade pip
     ```
-4. Install packages
+4. Install tools
     ```
-    pip install -e 'git+https://github.com/waveshare/e-Paper.git#egg=waveshare-epd&subdirectory=RaspberryPi_JetsonNano/python'
-    pip install pyyaml
+    pip install wheel
     pip install flake8
     pip install pylint
     pip install yamllint
     ```
-5. Freeze
+    Freeze
+    ```
+    pip freeze > requirements-tools.txt
+    ```
+5. Install packages - Go back to step 1 and start over, this time installing packages instead of tools
+    ```
+    pip install wheel
+    pip install pyyaml
+    pip install spidev
+    pip install RPi.GPIO
+    pip install epdlib
+    pip install -e 'git+https://github.com/waveshare/e-Paper.git@1ac5cbad562ed58c678ba0d6f3f833612ec53320#egg=waveshare_epd&subdirectory=RaspberryPi_JetsonNano/python'
+    pip uninstall -y Jetson.GPIO
+    ```
+    Freeze
     ```
     pip freeze > requirements.txt
     ```
+
+Finally, install needed requirements files.
 
 ### Projects used
 * https://github.com/waveshare/e-Paper - eInk display interface

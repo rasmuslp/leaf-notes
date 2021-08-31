@@ -46,3 +46,5 @@ FROM base as runner
 COPY --from=builder /usr/src/app/.venv /usr/src/app/.venv
 
 # COPY . .
+
+ENV PYTHONUNBUFFERED=1

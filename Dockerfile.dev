@@ -11,5 +11,5 @@ COPY requirements.txt ./
 COPY requirements-tools.txt ./
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir wheel
-RUN pip install --no-cache-dir -r requirements.txt && pip uninstall -y Jetson.GPIO
+RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements-tools.txt

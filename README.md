@@ -21,7 +21,7 @@ deactivate
 ## Running the program
 Be sure this is python3 at this point
 ```
-python src/main.py
+python src/display/main.py
 ```
 
 ## Upgrading packages
@@ -59,6 +59,7 @@ python src/main.py
     pip install pyyaml
     pip install spidev
     pip install RPi.GPIO==0.7.1a4
+	pip install Pillow
     pip install epdlib
     ```
     Freeze

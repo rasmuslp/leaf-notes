@@ -2,6 +2,7 @@
 ignore = E501  # Line too long
 exclude =
     .git,
-    .venv
+    .venv,
+	display/waveshare_epd
 show-source = True
 statistics = True

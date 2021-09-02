@@ -26,8 +26,7 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install wheel
+          python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements-tools.txt
       - name: Lint with flake8
         run: |
@@ -55,12 +54,13 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install wheel
+          python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements-tools.txt
+          pip install -r requirements.txt
       - name: Lint with pylint
         run: |
           source .venv/bin/activate
+          pylint display
           pylint src
 
   yamllint:
@@ -84,8 +84,7 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install wheel
+          python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements-tools.txt
       - name: Lint with pylint
         run: |

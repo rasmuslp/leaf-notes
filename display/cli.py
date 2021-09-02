@@ -1,20 +1,51 @@
-"""Entry point of the 'display' application"""
+"""Command Line Interface"""
 
 import argparse
+import logging
+import os
+
+from display.display import Display
+
+logger = logging.getLogger(__name__)
+
+
+def chechPathExists(path):
+    """Throw if path doesn't exist"""
+    if not os.path.exists(path):
+        raise FileNotFoundError(path)
+
+
+def checkValidRotation(rotationDegrees):
+    """Throw if outside valid range: [0 - 359]"""
+    if rotationDegrees < 0 or rotationDegrees > 359:
+        raise ValueError('Rotation should be between 0 and 359')
 
 
 def clear():
     """Clear display"""
-    print('Clearing')
+    logger.debug('Clearing')
+    display = Display()
+    display.clear()
 
 
 def render(args):
     """Render to display"""
-    print('Rendering', args)
+    logger.debug('Rendering')
+
+    blackImagePath = args.black_image[0]
+    colourImagePath = args.colour_image[0]
+    rotateDegrees = args.rotate[0]
+
+    chechPathExists(blackImagePath)
+    chechPathExists(colourImagePath)
+    checkValidRotation(rotateDegrees)
+
+    display = Display()
+    display.render(blackImagePath, colourImagePath, rotateDegrees)
 
 
-def main():
-    """display main function"""
+def cli():
+    """CLI definition and execution"""
     programParser = argparse.ArgumentParser(description='Handles redering to an e-paper display over SPI on a Raspberry Pi',
                                             allow_abbrev=False)
 
@@ -34,13 +65,13 @@ def main():
 
     renderParser = commandParsers.add_parser('render', help='Render images to screen (clears before rendering)')
     renderParser.add_argument('-b',
-                              '--image-black',
+                              '--black-image',
                               nargs=1,
                               required=True,
                               metavar='path',
                               help='Path to black part of image, required')
     renderParser.add_argument('-c',
-                              '--image-colour',
+                              '--colour-image',
                               nargs=1,
                               required=True,
                               metavar='path',
@@ -54,11 +85,13 @@ def main():
                               help='Rotate image a number of degrees, defaults to 0')
 
     args = programParser.parse_args()
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    elif args.quiet:
+        logging.basicConfig(level=logging.WARNING)
+
+    logger.debug('Parsed arguments %s', args)
     if args.command == 'clear':
         clear()
     elif args.command == 'render':
         render(args)
-
-
-if __name__ == '__main__':
-    main()

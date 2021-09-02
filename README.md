@@ -58,7 +58,7 @@ python src/main.py
     pip install wheel
     pip install pyyaml
     pip install spidev
-    pip install RPi.GPIO
+    pip install RPi.GPIO==0.7.1a4
     pip install epdlib
     pip install -e 'git+https://github.com/waveshare/e-Paper.git@1ac5cbad562ed58c678ba0d6f3f833612ec53320#egg=waveshare_epd&subdirectory=RaspberryPi_JetsonNano/python'
     pip uninstall -y Jetson.GPIO

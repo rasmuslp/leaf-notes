@@ -4,6 +4,7 @@ import argparse
 import logging
 import random
 from string import Template
+import subprocess
 
 from notes.note import Note
 from notes.quote import loadQuotes
@@ -36,6 +37,9 @@ def run(args):
 
     })
     note.write('./img-black.bmp', './img-colour.bmp')
+
+    if args.update_display:
+        subprocess.run(['.venv/bin/python', '-m', 'display', '-v', 'render', '-b', './img-black.bmp', '-c', './img-colour.bmp', '-r', args.rotate[0]], check=True)
 
 
 def cli():
@@ -79,6 +83,19 @@ def cli():
                                type=int,
                                metavar='height',
                                help='Height above sea level in meters')
+
+    programParser.add_argument('-u',
+                               '--update-display',
+                               action='store_true',
+                               help='Invoke display module to also update the display')
+
+    programParser.add_argument('-r',
+                               '--rotate',
+                               default=0,
+                               nargs=1,
+                               type=int,
+                               metavar='degrees',
+                               help='Rotate image a number of degrees, defaults to 0')
 
     args = programParser.parse_args()
     if args.verbose:

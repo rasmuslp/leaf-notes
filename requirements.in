@@ -1,0 +1,6 @@
+pyyaml
+requests
+Pillow
+RPi.GPIO>=0.7.1a4
+spidev
+epdlib

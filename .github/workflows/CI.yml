@@ -24,10 +24,9 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
       - name: Create .venv and install pip dependencies
         run: |
-          python -m venv .venv
+          make init
           source .venv/bin/activate
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements-tools.txt
+          pip install -r dev-requirements.txt
       - name: Lint with flake8
         run: |
           source .venv/bin/activate
@@ -52,10 +51,9 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
       - name: Create .venv and install pip dependencies
         run: |
-          python -m venv .venv
+          make init
           source .venv/bin/activate
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements-tools.txt
+          pip install -r dev-requirements.txt
           pip install -r requirements.txt
       - name: Lint with pylint
         run: |
@@ -82,10 +80,9 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
       - name: Create .venv and install pip dependencies
         run: |
-          python -m venv .venv
+          make init
           source .venv/bin/activate
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements-tools.txt
+          pip install -r dev-requirements.txt
       - name: Lint with pylint
         run: |
           source .venv/bin/activate

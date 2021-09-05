@@ -25,49 +25,9 @@ python src/display/main.py
 ```
 
 ## Upgrading packages
-1. Be sure to deactivate venv, iff active
-    ```shell
-    deactivate
-    ```
-2. Remove the venv
-    ```shell
-    rm -rf .venv
-    ```
-3. Recreate venv and `activate`
-    ```shell
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-4. Upgrade pip
-    ```shell
-    pip install --upgrade pip
-    ```
-4. Install tools
-    ```shell
-    pip install wheel
-    pip install flake8
-    pip install pylint
-    pip install yamllint
-    ```
-    Freeze
-    ```shell
-    pip freeze > requirements-tools.txt
-    ```
-5. Install packages - Go back to step 1 and start over, this time installing packages instead of tools
-    ```shell
-    pip install wheel
-    pip install pyyaml
-    pip install spidev
-    pip install RPi.GPIO==0.7.1a4
-	pip install Pillow
-    pip install epdlib
-    ```
-    Freeze
-    ```shell
-    pip freeze > requirements.txt
-    ```
-
-Finally, install needed requirements files.
+```shell
+make upgrade-deps
+```
 
 ### Projects used
 * https://github.com/waveshare/e-Paper - eInk display interface

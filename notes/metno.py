@@ -7,10 +7,12 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-proxies = {
-    'http': 'http://localhost:8888',
-    'https': 'http://localhost:8888'
-}
+proxies = {}
+
+PROXY_ENABLED = False
+if PROXY_ENABLED:
+    proxies['http'] = 'http://localhost:8888'
+    proxies['https'] = 'https://localhost:8888'
 
 
 class MetnoApi:

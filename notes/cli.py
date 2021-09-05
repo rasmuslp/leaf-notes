@@ -2,9 +2,11 @@
 
 import argparse
 import logging
+import random
 from string import Template
 
 from notes.note import Note
+from notes.quote import loadQuotes
 from notes.weather import Weather
 
 logger = logging.getLogger(__name__)
@@ -13,6 +15,9 @@ logger = logging.getLogger(__name__)
 def run(args):
     """Runner"""
     logger.debug('Running')
+    quotes = loadQuotes(args.quotes[0])
+    randomQuote = random.choice(quotes)
+
     weather = Weather()
     forecast = weather.getForecast(args.weather_latitude[0], args.weather_longitude[0], args.weather_altitude[0])
 
@@ -20,9 +25,9 @@ def run(args):
 
     note = Note()
     note.update({
-        'quoteTitle': 'BE LIGHT',
-        'quoteText': 'If you are happy, happiness will come to you because happiness wants to go where happiness is.',
-        'quoteAuthor': '- Yogi Bhajan',
+        'quoteTitle': randomQuote.title,
+        'quoteText': randomQuote.quote,
+        'quoteAuthor': Template('- ${author}').substitute(author=randomQuote.author),
         'weatherIcon': './notes/01d.png',
         'weatherTemperature': Template('${temperature} C').substitute(temperature=forecast['now']['airTemperature']),
         'weatherWindSpeed': Template('${speed} m/s').substitute(speed=forecast['now']['windSpeed']),
@@ -47,6 +52,12 @@ def cli():
                        '--quiet',
                        action='store_true',
                        help='decrease verbosity to absolute minimum')
+
+    programParser.add_argument('--quotes',
+                               nargs=1,
+                               required=True,
+                               metavar='path',
+                               help='Path to yaml file with Quote definitions')
 
     programParser.add_argument('--weather-latitude',
                                nargs=1,

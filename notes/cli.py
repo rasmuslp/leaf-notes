@@ -3,7 +3,7 @@
 import argparse
 import logging
 
-from notes.metno import Metno
+from notes.weather import Weather
 
 logger = logging.getLogger(__name__)
 
@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 def run(args):
     """Runner"""
     logger.debug('Running')
-    metno = Metno(args.weather_latitude[0], args.weather_longitude[0], args.weather_altitude[0])
-    metno.locationForecast()
+    weather = Weather()
+    forecast = weather.getForecast(args.weather_latitude[0], args.weather_longitude[0], args.weather_altitude[0])
+    print(forecast)
 
 
 def cli():

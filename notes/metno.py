@@ -92,23 +92,20 @@ class MetnoApi:
 
 class Metno:
     """Met.no service"""
-    def __init__(self, latitude, longitude, altitude=None):
+    def __init__(self):
         self.api = MetnoApi()
-        self.latitude = latitude
-        self.longitude = longitude
-        self.altitude = altitude
 
-    def locationForecast(self):
+    def locationForecast(self, latitude, longitude, altitude=None):
         """Get location forecast"""
         apiUrl = 'https://api.met.no/weatherapi/locationforecast/2.0/compact'
         payload = {
-            'lat': self.latitude,
-            'lon': self.longitude
+            'lat': latitude,
+            'lon': longitude
         }
         print(payload)
 
-        if self.altitude:
-            payload['altitude'] = self.altitude
+        if altitude:
+            payload['altitude'] = altitude
 
         data = self.api.request(apiUrl, payload)
 

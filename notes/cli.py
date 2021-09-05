@@ -35,7 +35,7 @@ def run(args):
         'weatherPrecipitation': Template('${precipitation} mm').substitute(precipitation=forecast['next6Hours']['precipitationAmount'])
 
     })
-    note.write('./img.bmp')
+    note.write('./img-black.bmp', './img-colour.bmp')
 
 
 def cli():

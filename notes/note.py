@@ -1,6 +1,7 @@
 """Note module"""
 
 import epdlib
+from PIL import Image
 
 layout1 = {
     'quoteTitle': {
@@ -113,7 +114,18 @@ class Note:
         """Set data"""
         self.epdLayout.update_contents(updates)
 
-    def write(self, path):
+    def write(self, blackImagePath, colourImagePath):
         """Write image to disk"""
-        self.epdLayout.concat()
-        self.epdLayout.image.save(path)
+        blackImage = Image.new('L', self.epdLayout.resolution, 255)
+        colourImage = Image.new('L', self.epdLayout.resolution, 255)
+
+        blackImage.paste(self.epdLayout.blocks['quoteTitle'].image, self.epdLayout.blocks['quoteTitle'].abs_coordinates)
+        blackImage.paste(self.epdLayout.blocks['quoteText'].image, self.epdLayout.blocks['quoteText'].abs_coordinates)
+        colourImage.paste(self.epdLayout.blocks['quoteAuthor'].image, self.epdLayout.blocks['quoteAuthor'].abs_coordinates)
+        blackImage.paste(self.epdLayout.blocks['weatherIcon'].image, self.epdLayout.blocks['weatherIcon'].abs_coordinates)
+        blackImage.paste(self.epdLayout.blocks['weatherTemperature'].image, self.epdLayout.blocks['weatherTemperature'].abs_coordinates)
+        blackImage.paste(self.epdLayout.blocks['weatherWindSpeed'].image, self.epdLayout.blocks['weatherWindSpeed'].abs_coordinates)
+        blackImage.paste(self.epdLayout.blocks['weatherPrecipitation'].image, self.epdLayout.blocks['weatherPrecipitation'].abs_coordinates)
+
+        blackImage.save(blackImagePath)
+        colourImage.save(colourImagePath)

@@ -2,7 +2,9 @@
 
 import argparse
 import logging
+from string import Template
 
+from notes.note import Note
 from notes.weather import Weather
 
 logger = logging.getLogger(__name__)
@@ -13,7 +15,22 @@ def run(args):
     logger.debug('Running')
     weather = Weather()
     forecast = weather.getForecast(args.weather_latitude[0], args.weather_longitude[0], args.weather_altitude[0])
+
     print(forecast)
+
+    note = Note()
+    note.update({
+        'quoteTitle': 'BE LIGHT',
+        'quoteText': 'If you are happy, happiness will come to you because happiness wants to go where happiness is.',
+        'quoteAuthor': '- Yogi Bhajan',
+        'weatherIcon': './notes/01d.png',
+        'weatherTemperature': Template('${temperature} C').substitute(temperature=forecast['now']['airTemperature']),
+        'weatherWindSpeed': Template('${speed} m/s').substitute(speed=forecast['now']['windSpeed']),
+        'weatherWindDirection': Template('${direction}').substitute(direction=forecast['now']['windFromDirection']),
+        'weatherPrecipitation': Template('${precipitation} mm').substitute(precipitation=forecast['next6Hours']['precipitationAmount'])
+
+    })
+    note.write('./img.bmp')
 
 
 def cli():

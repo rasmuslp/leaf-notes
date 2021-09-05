@@ -8,8 +8,8 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN python -m venv "$VIRTUAL_ENV"
 COPY requirements.txt ./
-COPY requirements-tools.txt ./
+COPY dev-requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir wheel
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r requirements-tools.txt
+RUN pip install --no-cache-dir -r dev-requirements.txt

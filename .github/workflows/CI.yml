@@ -61,7 +61,7 @@ jobs:
         run: |
           source .venv/bin/activate
           pylint display
-          pylint src
+          pylint notes
 
   yamllint:
     runs-on: ubuntu-latest

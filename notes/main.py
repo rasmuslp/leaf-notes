@@ -6,7 +6,7 @@ import sys
 
 import yaml
 
-from quote import Quote
+from notes.quote import Quote
 
 with open('quotes.yml', 'r', encoding='utf-8') as fileStream:
     try:

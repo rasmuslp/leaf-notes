@@ -28,7 +28,7 @@ def run(args):
         'quoteTitle': randomQuote.title,
         'quoteText': randomQuote.quote,
         'quoteAuthor': Template('- ${author}').substitute(author=randomQuote.author),
-        'weatherIcon': './notes/01d.png',
+        'weatherIcon': Template('./notes/metno-icons/png/${icon}.png').substitute(icon=forecast['next6Hours']['symbolCode']),
         'weatherTemperature': Template('${temperature} C').substitute(temperature=forecast['now']['airTemperature']),
         'weatherWindSpeed': Template('${speed} m/s').substitute(speed=forecast['now']['windSpeed']),
         'weatherWindDirection': Template('${direction}').substitute(direction=forecast['now']['windFromDirection']),

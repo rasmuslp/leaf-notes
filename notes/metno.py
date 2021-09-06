@@ -20,7 +20,7 @@ class MetnoApi:
 
     def __init__(self):
         self.headers = {
-            'User-Agent': 'leaf-notes/0.0.1 github.com/rasmuslp'
+            'User-Agent': 'leaf-notes/0.1.0 github.com/rasmuslp'
         }
         self.cache = {}
         self.metnoDateFormat = '%a, %d %b %Y %H:%M:%S %Z'

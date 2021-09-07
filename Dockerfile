@@ -1,5 +1,5 @@
 # Base definition
-FROM python:3.9.6-slim as base
+FROM python:3.9.6-slim-buster as base
 
 LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
 

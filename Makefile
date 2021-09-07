@@ -7,6 +7,7 @@ init:
 
 lint:
 	-flake8 .
+	-pylint common
 	-pylint display
 	-pylint notes
 	-yamllint -s .

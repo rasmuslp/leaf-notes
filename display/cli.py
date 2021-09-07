@@ -4,6 +4,8 @@ import argparse
 import logging
 import os
 
+from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
+from common.env_default import envDefault
 from display.display import Display
 
 logger = logging.getLogger(__name__)
@@ -32,9 +34,9 @@ def render(args):
     """Render to display"""
     logger.debug('Rendering')
 
-    blackImagePath = args.black_image[0]
-    colourImagePath = args.colour_image[0]
-    rotateDegrees = args.rotate[0]
+    blackImagePath = args.black_image
+    colourImagePath = args.colour_image
+    rotateDegrees = args.rotate
 
     chechPathExists(blackImagePath)
     chechPathExists(colourImagePath)
@@ -49,15 +51,8 @@ def cli():
     programParser = argparse.ArgumentParser(description='Handles redering to an e-paper display over SPI on a Raspberry Pi',
                                             allow_abbrev=False)
 
-    group = programParser.add_mutually_exclusive_group()
-    group.add_argument('-v',
-                       '--verbose',
-                       action='store_true',
-                       help='increase output verbosity')
-    group.add_argument('-q',
-                       '--quiet',
-                       action='store_true',
-                       help='decrease verbosity to absolute minimum')
+    verboseAndQuietGroup = programParser.add_mutually_exclusive_group()
+    addVerboseAndQuiet(verboseAndQuietGroup)
 
     commandParsers = programParser.add_subparsers(dest='command', required=True, help='A command must be specified')
 
@@ -67,24 +62,34 @@ def cli():
     renderParser.add_argument('-b',
                               '--black-image',
                               nargs=1,
+                              action=envDefault('BLACK_IMAGE'),
                               required=True,
                               metavar='path',
                               help='Path to black part of image, required')
     renderParser.add_argument('-c',
                               '--colour-image',
                               nargs=1,
+                              action=envDefault('COLOUR_IMAGE'),
                               required=True,
                               metavar='path',
                               help='Path to color part of image, required')
     renderParser.add_argument('-r',
                               '--rotate',
                               default=0,
+                              action=envDefault('ROTATE'),
                               nargs=1,
                               type=int,
                               metavar='degrees',
                               help='Rotate image a number of degrees, defaults to 0')
 
-    args = programParser.parse_args()
+    args = vars(programParser.parse_args())
+    argsToUnfold = [
+        'black_image',
+        'colour_image',
+        'rotate'
+    ]
+    args = unfoldArgValueIfArrayOneFrom(args, argsToUnfold)
+
     if args.verbose:
         logging.basicConfig(level=logging.DEBUG)
     elif args.quiet:

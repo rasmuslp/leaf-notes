@@ -28,6 +28,11 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Runner
 FROM base as runner
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libjpeg-turbo-progs \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /usr/src/app/.venv /usr/src/app/.venv
 
 COPY common/ common/

@@ -96,7 +96,7 @@ jobs:
       - pylint
       - yamllint
     env:
-      PLATFORMS: linux/arm/v6,linux/arm/v7
+      PLATFORMS: linux/arm/v6
     steps:
       - uses: actions/checkout@v2
       - name: Prepare

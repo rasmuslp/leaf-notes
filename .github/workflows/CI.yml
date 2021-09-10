@@ -95,11 +95,8 @@ jobs:
       - flake8
       - pylint
       - yamllint
-    strategy:
-      matrix:
-        platform:
-          - linux/arm/v6
-          - linux/arm/v7
+    env:
+      PLATFORMS: linux/arm/v6,linux/arm/v7
     steps:
       - uses: actions/checkout@v2
       - name: Prepare
@@ -129,7 +126,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
-          platforms: arm
+          platforms: ${{ env.PLATFORMS }}
 
       - name: Set up Docker Buildx
         id: buildx
@@ -146,6 +143,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          platforms: ${{ matrix.platform }}
+          platforms: ${{ env.PLATFORMS }}
           push: true
           tags: ${{ steps.prep.outputs.tags }}

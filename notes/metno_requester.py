@@ -52,7 +52,7 @@ class MetnoRequester:
                 return json.loads(cached['data'])
 
             logger.info('Cache expired for %s', url)
-            headers['If-Modified-Sinc'] = cached['lastModified']
+            headers['If-Modified-Since'] = cached['lastModified']
 
         logger.info('Checking for new data for %s', url)
         response = requests.get(url,

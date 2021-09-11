@@ -12,7 +12,7 @@ FROM base as builder
 
 RUN apk add --update --no-cache \
     build-base python3-dev \
-    freetype-dev libjpeg jpeg-dev zlib-dev musl-dev \
+    freetype-dev jpeg-dev zlib-dev musl-dev \
     libffi-dev openssl-dev
 
 RUN python -m venv "$VIRTUAL_ENV"

@@ -7,6 +7,7 @@ import schedule
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
+from common.logger import setVerboseOrQuiet
 from notes.runner import Runner
 
 logger = logging.getLogger(__name__)
@@ -76,12 +77,7 @@ def cli():
     ]
     args = unfoldArgValueIfArrayOneFrom(args, argsToUnfold)
 
-    if args.verbose:
-        logging.basicConfig(level=logging.DEBUG)
-    elif args.quiet:
-        logging.basicConfig(level=logging.WARNING)
-    else:
-        logging.basicConfig(level=logging.INFO)
+    setVerboseOrQuiet(args.verbose, args.quiet)
 
     logger.debug('Parsed arguments %s', args)
     runner = Runner(**vars(args))

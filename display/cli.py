@@ -6,6 +6,7 @@ import os
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
+from common.logger import setVerboseOrQuiet
 from display.display import Display
 
 logger = logging.getLogger(__name__)
@@ -90,12 +91,7 @@ def cli():
     ]
     args = unfoldArgValueIfArrayOneFrom(args, argsToUnfold)
 
-    if args.verbose:
-        logging.basicConfig(level=logging.DEBUG)
-    elif args.quiet:
-        logging.basicConfig(level=logging.WARNING)
-    else:
-        logging.basicConfig(level=logging.INFO)
+    setVerboseOrQuiet(args.verbose, args.quiet)
 
     logger.debug('Parsed arguments %s', args)
     if args.command == 'clear':

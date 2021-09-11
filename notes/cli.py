@@ -27,6 +27,7 @@ def run(args):
 
     print(forecast)
 
+    logger.debug('Generating note')
     note = Note()
     note.update({
         'quoteTitle': randomQuote.title,
@@ -39,9 +40,11 @@ def run(args):
         'weatherPrecipitation': Template('${precipitation} mm').substitute(precipitation=forecast['next6Hours']['precipitationAmount'])
 
     })
+    logger.debug('Writing images')
     note.write('./img-black.bmp', './img-colour.bmp')
 
     if args.update_display:
+        logger.debug('Updating display')
         displayArgs = ['python', '-m', 'display']
         if args.verbose:
             displayArgs.append('--verbose')

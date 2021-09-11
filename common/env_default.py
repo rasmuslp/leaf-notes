@@ -5,20 +5,36 @@ import argparse
 import os
 
 
-# Courtesy of http://stackoverflow.com/a/10551190 with env-var retrieval fixed
+# Courtesy of http://stackoverflow.com/a/10551190 with env-var retrieval fixed and support for using with store_true
 class EnvDefault(argparse.Action):
     """An argparse action class that auto-sets missing default values from env
     vars. Defaults to requiring the argument."""
 
-    def __init__(self, envvar, required=None, default=None, **kwargs):
+    # pylint: disable=too-many-arguments
+    def __init__(self, envvar, const=None, default=None, nargs=None, required=None, subAction=None, **kwargs):
+        self.subAction = None
+        if subAction:
+            self.subAction = subAction
+            if subAction == 'store_true':
+                const = True
+                default = False
+                nargs = 0
+            else:
+                raise ValueError('subAction not recognized: %s' % subAction)
+
         if envvar in os.environ:
             default = os.environ[envvar]
+
         if required and default:
             required = False
-        super().__init__(default=default, required=required, **kwargs)
+
+        super().__init__(const=const, default=default, nargs=nargs, required=required, **kwargs)
 
     def __call__(self, parser, namespace, values, option_string=None):
-        setattr(namespace, self.dest, values)
+        if self.subAction:
+            setattr(namespace, self.dest, self.const)
+        else:
+            setattr(namespace, self.dest, values)
 
 
 def envDefault(envvar):

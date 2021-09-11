@@ -91,8 +91,7 @@ def cli():
     programParser.add_argument('-u',
                                '--update-display',
                                action=envDefault('UPDATE_DISPLAY'),
-                               default=False,
-                               type=bool,
+                               subAction='store_true',
                                help='Invoke display module to also update the display')
 
     programParser.add_argument('-r',

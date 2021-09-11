@@ -10,14 +10,12 @@ def addVerboseAndQuiet(mutualExclusiveGroup):
     mutualExclusiveGroup.add_argument('-v',
                                       '--verbose',
                                       action=envDefault('VERBOSE'),
-                                      default=False,
-                                      type=bool,
+                                      subAction='store_true',
                                       help='increase output verbosity')
     mutualExclusiveGroup.add_argument('-q',
                                       '--quiet',
                                       action=envDefault('QUIET'),
-                                      default=False,
-                                      type=bool,
+                                      subAction='store_true',
                                       help='decrease verbosity to absolute minimum')
 
 

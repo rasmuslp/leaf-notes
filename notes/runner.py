@@ -68,3 +68,5 @@ class Runner:
             except subprocess.CalledProcessError as exc:
                 logger.error('See above for details. %s', exc)
                 sys.exit(1)
+
+        logger.info('Run completed')

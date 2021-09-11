@@ -29,6 +29,7 @@ def clear():
     logger.info('Clearing')
     display = Display()
     display.clear()
+    logger.info('Clearing completed')
 
 
 def render(args):
@@ -45,6 +46,7 @@ def render(args):
 
     display = Display()
     display.render(blackImagePath, colourImagePath, rotateDegrees)
+    logger.info('Rendering completed')
 
 
 def cli():

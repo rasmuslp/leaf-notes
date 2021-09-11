@@ -5,6 +5,7 @@ import logging
 import random
 from string import Template
 import subprocess
+import sys
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
@@ -41,7 +42,11 @@ def run(args):
     note.write('./img-black.bmp', './img-colour.bmp')
 
     if args.update_display:
-        subprocess.run(['.venv/bin/python', '-m', 'display', '-v', 'render', '-b', './img-black.bmp', '-c', './img-colour.bmp', '-r', args.rotate], check=True)
+        try:
+            subprocess.run(['python', '-m', 'display', 'render', '-b', './img-black.bmp', '-c', './img-colour.bmp', '-r', str(args.rotate)], check=True)
+        except subprocess.CalledProcessError as exc:
+            logger.error('Err running \'display\', see above for details. %s', exc)
+            sys.exit(1)
 
 
 def cli():

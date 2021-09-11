@@ -1,9 +1,10 @@
 """Requester for Met.no's API"""
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 import logging
 import requests
+import schedule
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +24,7 @@ class MetnoRequester:
             'User-Agent': 'leaf-notes/0.1.0 github.com/rasmuslp'
         }
         self.cache = {}
+        self.cacheCleanSchedule = schedule.every(30).minutes.do(self.cleanCache)
         self.metnoDateFormat = '%a, %d %b %Y %H:%M:%S %Z'
 
     def request(self, url, payload):
@@ -80,9 +82,11 @@ class MetnoRequester:
 
         return data
 
-    def isExpired(self, timestampString):
+    def isExpired(self, timestampString, offsetMinutes=None):
         """Check if timestamp is expired"""
         convertedTimestamp = datetime.strptime(timestampString, self.metnoDateFormat).replace(tzinfo=timezone.utc)
+        if offsetMinutes:
+            convertedTimestamp = convertedTimestamp + timedelta(minutes=offsetMinutes)
 
         now = datetime.now(tz=timezone.utc)
 
@@ -92,3 +96,10 @@ class MetnoRequester:
             return True
 
         return False
+
+    def cleanCache(self):
+        """Clean cache by looking at 'expires' + an offset"""
+        sixHours = 6 * 60
+        for key, value in dict(self.cache).items():
+            if self.isExpired(value['expires'], sixHours):
+                self.cache.pop(key)

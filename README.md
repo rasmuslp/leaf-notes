@@ -19,10 +19,93 @@ deactivate
 ```
 
 ## Running the program
-Be sure this is python3 at this point
+
+**`python -m notes`**
+Notes module generates notes and saves these as images
 ```
-python src/display/main.py
+usage: python -m notes [-h] [-v | -q] --quotes-path path --weather-latitude degrees --weather-longitude degrees --weather-altitude height [-u] [-r degrees]
+
+Generates leaf-note as images
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         increase output verbosity
+  -q, --quiet           decrease verbosity to absolute minimum
+  --quotes-path path    Path to yaml file with Quote definitions
+  --weather-latitude degrees
+                        Latitude for weather information
+  --weather-longitude degrees
+                        Longitude for weather information
+  --weather-altitude height
+                        Height above sea level in meters
+  -u, --update-display  Invoke display module to also update the display
+  -r degrees, --rotate degrees
+                        Rotate image a number of degrees, defaults to 0
 ```
+
+**`python -m display`**
+Display module can clear display and render images to display
+```
+usage: python -m display [-h] [-v | -q] {clear,render} ...
+
+Handles redering to an e-paper display over SPI on a Raspberry Pi
+
+positional arguments:
+  {clear,render}  A command must be specified
+    clear         Clear the screen
+    render        Render images to screen (clears before rendering)
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -v, --verbose   increase output verbosity
+  -q, --quiet     decrease verbosity to absolute minimum
+```
+
+**`python -m display render`**
+Render command options
+```
+usage: python -m display render [-h] -b path -c path [-r degrees]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -b path, --black-image path
+                        Path to black part of image, required
+  -c path, --colour-image path
+                        Path to color part of image, required
+  -r degrees, --rotate degrees
+                        Rotate image a number of degrees, defaults to 0
+```
+
+## Running the program as a Docker container
+Pull image
+```
+docker pull ghcr.io/rasmuslp/leaf-notes:<version>
+```
+
+Run a one-time container.  
+Access to `gpiomem` and `spidev0.0` is required to communicate with the display. Quotes file needs to be mounted into the container.
+```shell
+docker run -it --rm \
+	--device /dev/gpiomem \
+	--device /dev/spidev0.0 \
+	-v /path-to/quotes.yml:/usr/src/app/quotes.yml:ro \
+	-e QUOTES_PATH=quotes.yml \
+	-e WEATHER_LATITUDE=50 \
+	-e WEATHER_LONGITUDE=10 \
+	-e UPDATE_DISPLAY=1
+	ghcr.io/rasmuslp/leaf-notes:<version> python -m notes
+```
+Options can be set with environment variables
+| ENV VAR | Name | Required  
+| ------- | ---- | -------- |
+|`VERBOSE`| `verbose` | |
+|`QUIET`| `quiet` | |
+|`QUOTES_PATH`| `quotes-path` | Yes |
+|`WEATHER_LATITUDE`| `weather-latitude` | Yes |
+|`WEATHER_LONGITUDE`| `weather-longitude` | Yes |
+|`WEATHER_ALTITUDE`| `weather-altitude` | |
+|`UPDATE_DISPLAY`| `update-display` | |
+|`ROTATE`| `rotate` | |
 
 ## Upgrading packages
 ```shell
@@ -52,7 +135,7 @@ docker build -t leaf-notes:local-development -f dev.dockerfile .
 
 Build for production
 ```shell
-docker build -t leaf-notes:local-latest .
+docker build -t leaf-notes:local .
 docker build -t leaf-notes:local-alpine -f alpine.dockerfile .
 ```
 

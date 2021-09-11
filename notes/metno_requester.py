@@ -51,9 +51,9 @@ class MetnoRequester:
                 logger.info('Cache hit for %s', url)
                 return json.loads(cached['data'])
 
+            logger.info('Cache expired for %s', url)
             headers['If-Modified-Sinc'] = cached['lastModified']
 
-        logger.info('Cache expired for %s', url)
         logger.info('Checking for new data for %s', url)
         response = requests.get(url,
                                 headers=headers,
@@ -68,7 +68,7 @@ class MetnoRequester:
                 'expires': response.headers['Expires'],
                 'lastModified': response.headers['Last-Modified']
             }
-            logger.info('Caching new data for %s %s', url, self.cache[argsHash])
+            logger.info('Caching new data for %s', url)
 
         # 304 Not Modified
         if cached and response.status_code == 304:

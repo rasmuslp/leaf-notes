@@ -19,7 +19,6 @@ class Metno:
             'lat': latitude,
             'lon': longitude
         }
-        print(payload)
 
         if altitude:
             payload['altitude'] = altitude

@@ -110,7 +110,6 @@ def cli():
         'weather_latitude',
         'weather_longitude',
         'weather_altitude',
-        # 'update_display',
         'rotate'
     ]
     args = unfoldArgValueIfArrayOneFrom(args, argsToUnfold)

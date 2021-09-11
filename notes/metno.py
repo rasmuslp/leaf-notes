@@ -47,11 +47,12 @@ class MetnoApi:
             # then continue using the stored data until you get a 200 OK
             # response.
 
-            if not self.isExpired(cached.expires):
+            if not self.isExpired(cached['expires']):
                 logger.debug('Cache hit for %s', url)
-                return json.loads(cached.data)
+                return json.loads(cached['data'])
 
-            headers['If-Modified-Sinc'] = cached.lastModified
+# typo? sinc
+            headers['If-Modified-Sinc'] = cached['lastModified']
 
         logger.debug('Cache miss for %s', url)
         response = requests.get(url,
@@ -63,7 +64,7 @@ class MetnoApi:
         data = response.json()
         if 200 <= response.status_code < 300:
             self.cache[argsHash] = {
-                'data': data,
+                'data': json.dumps(data),
                 'expires': response.headers['Expires'],
                 'lastModified': response.headers['Last-Modified']
             }
@@ -71,7 +72,7 @@ class MetnoApi:
 
         # 304 Not Modified
         if cached and response.status_code == 304:
-            return cached.data
+            return cached['data']
 
         if response.status_code not in [200]:
             logger.warning('Metno API - Status Code %s: %s', response.status_code, data)

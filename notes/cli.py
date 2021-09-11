@@ -80,6 +80,8 @@ def cli():
         logging.basicConfig(level=logging.DEBUG)
     elif args.quiet:
         logging.basicConfig(level=logging.WARNING)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     logger.debug('Parsed arguments %s', args)
     runner = Runner(**vars(args))

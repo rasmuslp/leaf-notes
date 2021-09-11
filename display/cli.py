@@ -25,14 +25,14 @@ def checkValidRotation(rotationDegrees):
 
 def clear():
     """Clear display"""
-    logger.debug('Clearing')
+    logger.info('Clearing')
     display = Display()
     display.clear()
 
 
 def render(args):
     """Render to display"""
-    logger.debug('Rendering')
+    logger.info('Rendering')
 
     blackImagePath = args.black_image
     colourImagePath = args.colour_image
@@ -94,6 +94,8 @@ def cli():
         logging.basicConfig(level=logging.DEBUG)
     elif args.quiet:
         logging.basicConfig(level=logging.WARNING)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     logger.debug('Parsed arguments %s', args)
     if args.command == 'clear':

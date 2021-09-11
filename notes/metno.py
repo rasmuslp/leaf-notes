@@ -48,13 +48,14 @@ class MetnoApi:
             # response.
 
             if not self.isExpired(cached['expires']):
-                logger.debug('Cache hit for %s', url)
+                logger.info('Cache hit for %s', url)
                 return json.loads(cached['data'])
 
 # typo? sinc
             headers['If-Modified-Sinc'] = cached['lastModified']
 
-        logger.debug('Cache miss for %s', url)
+        logger.info('Cache expired for %s', url)
+        logger.info('Checking for new data for %s', url)
         response = requests.get(url,
                                 headers=headers,
                                 params=payload,
@@ -68,10 +69,11 @@ class MetnoApi:
                 'expires': response.headers['Expires'],
                 'lastModified': response.headers['Last-Modified']
             }
-            print(self.cache[argsHash])
+            logger.info('Caching new data for %s %s', url, self.cache[argsHash])
 
         # 304 Not Modified
         if cached and response.status_code == 304:
+            logger.info('Data not modified for %s returning cached data', url)
             return json.loads(cached['data'])
 
         if response.status_code not in [200]:

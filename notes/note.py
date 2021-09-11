@@ -137,8 +137,8 @@ class Note:
 
     def write(self, blackImagePath, colourImagePath):
         """Write image to disk"""
-        blackImage = Image.new('L', self.epdLayout.resolution, 255)
-        colourImage = Image.new('L', self.epdLayout.resolution, 255)
+        blackImage = Image.new('1', self.epdLayout.resolution, 1)
+        colourImage = Image.new('1', self.epdLayout.resolution, 1)
 
         if 'quoteTitle' in self.epdLayout.blocks:
             blackImage.paste(self.epdLayout.blocks['quoteTitle'].image, self.epdLayout.blocks['quoteTitle'].abs_coordinates)

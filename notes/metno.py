@@ -72,7 +72,7 @@ class MetnoApi:
 
         # 304 Not Modified
         if cached and response.status_code == 304:
-            return cached['data']
+            return json.loads(cached['data'])
 
         if response.status_code not in [200]:
             logger.warning('Metno API - Status Code %s: %s', response.status_code, data)

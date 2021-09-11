@@ -26,6 +26,8 @@ rpi.gpio==0.7.1a4
     # via
     #   -r requirements.in
     #   epdlib
+schedule==1.1.0
+    # via -r requirements.in
 spidev==3.5
     # via
     #   -r requirements.in

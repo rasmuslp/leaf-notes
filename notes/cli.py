@@ -2,61 +2,14 @@
 
 import argparse
 import logging
-import random
-from string import Template
-import subprocess
-import sys
+import time
+import schedule
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
-from notes.note import Note
-from notes.quote import loadQuotes
-from notes.weather import Weather
+from notes.runner import Runner
 
 logger = logging.getLogger(__name__)
-
-
-def run(args):
-    """Runner"""
-    logger.debug('Running')
-    quotes = loadQuotes(args.quotes_path)
-    randomQuote = random.choice(quotes)
-
-    weather = Weather()
-    forecast = weather.getForecast(args.weather_latitude, args.weather_longitude, args.weather_altitude)
-
-    print(forecast)
-
-    logger.debug('Generating note')
-    note = Note()
-    note.update({
-        'quoteTitle': randomQuote.title,
-        'quoteText': randomQuote.quote,
-        'quoteAuthor': Template('- ${author}').substitute(author=randomQuote.author),
-        'weatherIcon': Template('./notes/metno-icons/png/${icon}.png').substitute(icon=forecast['next6Hours']['symbolCode']),
-        'weatherTemperature': Template('${temperature} C').substitute(temperature=forecast['now']['airTemperature']),
-        'weatherWindSpeed': Template('${speed} m/s').substitute(speed=forecast['now']['windSpeed']),
-        'weatherWindDirection': Template('${direction}').substitute(direction=forecast['now']['windFromDirection']),
-        'weatherPrecipitation': Template('${precipitation} mm').substitute(precipitation=forecast['next6Hours']['precipitationAmount'])
-
-    })
-    logger.debug('Writing images')
-    note.write('./img-black.bmp', './img-colour.bmp')
-
-    if args.update_display:
-        logger.debug('Updating display')
-        displayArgs = ['python', '-m', 'display']
-        if args.verbose:
-            displayArgs.append('--verbose')
-        if args.quiet:
-            displayArgs.append('--quiet')
-        displayArgs.extend(['render', '-b', './img-black.bmp', '-c', './img-colour.bmp', '-r', str(args.rotate)])
-
-        try:
-            subprocess.run(displayArgs, check=True)
-        except subprocess.CalledProcessError as exc:
-            logger.error('Err running \'display\', see above for details. %s', exc)
-            sys.exit(1)
 
 
 def cli():
@@ -129,4 +82,10 @@ def cli():
         logging.basicConfig(level=logging.WARNING)
 
     logger.debug('Parsed arguments %s', args)
-    run(args)
+    runner = Runner(**vars(args))
+    schedule.every().hour.at(':00').do(runner.run)
+    schedule.run_all()
+
+    while True:
+        schedule.run_pending()
+        time.sleep(60)

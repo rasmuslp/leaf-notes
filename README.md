@@ -119,6 +119,9 @@ make upgrade-deps
     * Consider https://github.com/txoof/epdlib ??? - Rrequires spidev and RPi.GPIO, which cant install on mac.... 
 * https://github.com/yaml/pyyaml/ - Yaml loader / (de)serializer
     * https://pyyaml.org/wiki/PyYAMLDocumentation
+* https://github.com/dbader/schedule - Scheduler
+	* https://pypi.org/project/schedule/
+	* https://schedule.readthedocs.io/en/stable/
 * https://github.com/PyCQA/flake8 - Tooling
     * https://flake8.pycqa.org/en/latest/index.html
 * https://github.com/PyCQA/pylint - Tooling

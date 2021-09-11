@@ -47,13 +47,13 @@ make upgrade-deps
 
 Build for development
 ```shell
-docker build -t leaf-notes:local-development -f Dockerfile.dev .
+docker build -t leaf-notes:local-development -f dev.dockerfile .
 ```
 
 Build for production
 ```shell
 docker build -t leaf-notes:local-latest .
-docker build -t leaf-notes:local-alpine -f Dockerfile.alpine .
+docker build -t leaf-notes:local-alpine -f alpine.dockerfile .
 ```
 
 ### Notes

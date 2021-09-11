@@ -13,7 +13,7 @@ FROM base as builder
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
-		libfreetype6-dev \
+        libfreetype6-dev \
         libjpeg62-turbo-dev \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -30,7 +30,7 @@ FROM base as runner
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-		libfreetype6 \
+        libfreetype6 \
         libjpeg-turbo-progs \
     && rm -rf /var/lib/apt/lists/*
 

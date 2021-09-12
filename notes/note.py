@@ -2,7 +2,7 @@
 import copy
 
 import epdlib
-from PIL import Image
+from PIL import Image, ImageEnhance
 
 layoutBaseQuoteFullWeather = {
     'quoteText': {
@@ -22,7 +22,7 @@ layoutBaseQuoteFullWeather = {
     'weatherIcon': {
         'type': 'ImageBlock',
         'image': True,
-        'padding': 1,
+        'padding': 0,
         'width': 1 / 4,
         'height': 3 / 6,
         'abs_coordinates': (None, 0),
@@ -133,6 +133,24 @@ class Note:
             theLayout['quoteText']['height'] = 4 / 6
 
         self.epdLayout.layout = theLayout
+
+        try:
+            # PNGs have transparency, which renders as black if not handled
+            iconPath = updates['weatherIcon']
+            rawIcon = Image.open(iconPath).convert(mode='RGBA')
+
+            # Down-scale and tweak raw icon
+            rawIcon.thumbnail(self.epdLayout.blocks['weatherIcon'].padded_area, Image.LANCZOS)
+            enhanced = ImageEnhance.Contrast(rawIcon).enhance(0.8)
+            enhanced2 = ImageEnhance.Sharpness(enhanced).enhance(3)
+
+            # Create image with white background and paste the raw icon with an alpha channel mask
+            icon = Image.new('1', rawIcon.size, 1)
+            icon.paste(enhanced2, mask=enhanced2.getchannel('A'))
+            updates['weatherIcon'] = icon
+        except (PermissionError, FileNotFoundError, OSError) as error:
+            raise error
+
         self.epdLayout.update_contents(updates)
 
     def write(self, blackImagePath, colourImagePath):

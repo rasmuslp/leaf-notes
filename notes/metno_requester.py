@@ -61,7 +61,7 @@ class MetnoRequester:
                                 headers=headers,
                                 params=payload,
                                 proxies=proxies,
-                                verify=False)
+                                verify=not PROXY_ENABLED)
 
         data = response.json()
         if 200 <= response.status_code < 300:

@@ -92,7 +92,9 @@ docker run -it --rm \
 	-e QUOTES_PATH=quotes.yml \
 	-e WEATHER_LATITUDE=50 \
 	-e WEATHER_LONGITUDE=10 \
-	-e UPDATE_DISPLAY=1
+	-e WEATHER_ALTITUDE=10 \
+	-e UPDATE_DISPLAY=1 \
+	--name leaf-notes \
 	ghcr.io/rasmuslp/leaf-notes:<version> python -m notes
 ```
 Options can be set with environment variables

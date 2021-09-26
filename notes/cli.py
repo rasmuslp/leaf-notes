@@ -81,7 +81,7 @@ def cli():
 
     logger.debug('Parsed arguments %s', args)
     runner = Runner(**vars(args))
-    schedule.every().hour.at(':00').do(runner.run)
+    schedule.every(5).minutes.do(runner.run)
     schedule.run_all()
 
     while True:

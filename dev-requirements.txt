@@ -4,7 +4,9 @@
 #
 #    pip-compile dev-requirements.in
 #
-astroid==2.7.3
+--extra-index-url https://www.piwheels.org/simple
+
+astroid==2.8.0
     # via pylint
 flake8==3.9.2
     # via -r dev-requirements.in
@@ -18,13 +20,13 @@ mccabe==0.6.1
     #   pylint
 pathspec==0.9.0
     # via yamllint
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via pylint
 pycodestyle==2.7.0
     # via flake8
 pyflakes==2.3.1
     # via flake8
-pylint==2.10.2
+pylint==2.11.1
     # via -r dev-requirements.in
 pyyaml==5.4.1
     # via
@@ -32,6 +34,10 @@ pyyaml==5.4.1
     #   yamllint
 toml==0.10.2
     # via pylint
+typing-extensions==3.10.0.2
+    # via
+    #   astroid
+    #   pylint
 wrapt==1.12.1
     # via astroid
 yamllint==1.26.3

@@ -16,16 +16,16 @@ class Runner:
     """Runner that keeps the state of the core logic"""
 
     # pylint: disable=too-many-arguments,too-many-instance-attributes
-    def __init__(self, verbose=False, quiet=False, quotes_path=None, weather_latitude=None, weather_longitude=None, weather_altitude=None, update_display=False, rotate=None) -> None:
+    def __init__(self, verbose=False, quiet=False, quotesPath=None, weatherLatitude=None, weatherLongitude=None, weatherAltitude=None, updateDisplay=False, rotate=None) -> None:
         self.verbose = verbose
         self.quiet = quiet
-        self.quotes = loadQuotes(quotes_path)
+        self.quotes = loadQuotes(quotesPath)
         self.weather = Weather()
-        self.weatherLatitude = weather_latitude
-        self.weatherLongitude = weather_longitude
-        self.weatherAltitude = weather_altitude
+        self.weatherLatitude = weatherLatitude
+        self.weatherLongitude = weatherLongitude
+        self.weatherAltitude = weatherAltitude
         self.note = Note()
-        self.updateDisplay = update_display
+        self.updateDisplay = updateDisplay
         self.rotate = rotate
 
     def run(self):

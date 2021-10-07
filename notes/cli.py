@@ -2,8 +2,8 @@
 
 import argparse
 import logging
-import time
-import schedule
+from apscheduler.schedulers.background import BlockingScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
@@ -20,6 +20,13 @@ def cli():
 
     verboseAndQuietGroup = programParser.add_mutually_exclusive_group()
     addVerboseAndQuiet(verboseAndQuietGroup)
+
+    programParser.add_argument('--cron-schedule',
+                               nargs=1,
+                               action=envDefault('CRON_SCHEDULE'),
+                               default='0 * * * *',
+                               metavar='schedule',
+                               help='Cron expression that determines the interval of this, defaults to hourly on minute 0')
 
     programParser.add_argument('--quotes-path',
                                nargs=1,
@@ -69,6 +76,7 @@ def cli():
 
     args = vars(programParser.parse_args())
     argsToUnfold = [
+        'cron_schedule',
         'quotes_path',
         'weather_latitude',
         'weather_longitude',
@@ -80,10 +88,18 @@ def cli():
     setVerboseOrQuiet(args.verbose, args.quiet)
 
     logger.debug('Parsed arguments %s', args)
-    runner = Runner(**vars(args))
-    schedule.every(5).minutes.do(runner.run)
-    schedule.run_all()
 
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
+    runner = Runner(verbose=args.verbose,
+                    quiet=args.quiet,
+                    quotesPath=args.quotes_path,
+                    weatherLatitude=args.weather_latitude,
+                    weatherLongitude=args.weather_longitude,
+                    weatherAltitude=args.weather_altitude,
+                    updateDisplay=args.update_display,
+                    rotate=args.rotate)
+    runner.run()
+
+    scheduler = BlockingScheduler()
+    cronTrigger = CronTrigger.from_crontab(args.cron_schedule)
+    scheduler.add_job(runner.run, trigger=cronTrigger, max_instances=1)
+    scheduler.start()

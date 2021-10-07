@@ -6,6 +6,8 @@
 #
 --extra-index-url https://www.piwheels.org/simple
 
+apscheduler==3.8.0
+    # via -r requirements.in
 certifi==2021.5.30
     # via requests
 charset-normalizer==2.0.6
@@ -18,6 +20,8 @@ pillow==8.3.2
     # via
     #   -r requirements.in
     #   epdlib
+pytz==2021.3
+    # via apscheduler
 pyyaml==5.4.1
     # via -r requirements.in
 requests==2.26.0
@@ -28,11 +32,16 @@ rpi.gpio==0.7.1a4
     # via
     #   -r requirements.in
     #   epdlib
-schedule==1.1.0
-    # via -r requirements.in
+six==1.16.0
+    # via apscheduler
 spidev==3.5
     # via
     #   -r requirements.in
     #   epdlib
+tzlocal==2.1
+    # via apscheduler
 urllib3==1.26.7
     # via requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

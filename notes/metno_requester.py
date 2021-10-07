@@ -4,7 +4,8 @@ from datetime import datetime, timedelta, timezone
 import json
 import logging
 import requests
-import schedule
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +25,12 @@ class MetnoRequester:
             'User-Agent': 'leaf-notes/0.1.0 github.com/rasmuslp'
         }
         self.cache = {}
-        self.cacheCleanSchedule = schedule.every(30).minutes.do(self.cleanCache)
         self.metnoDateFormat = '%a, %d %b %Y %H:%M:%S %Z'
+
+        cacheIntervalTrigger = IntervalTrigger(minutes=30)
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(self.cleanCache, trigger=cacheIntervalTrigger)
+        scheduler.start()
 
     def request(self, url, payload):
         """Perform a cached API request"""

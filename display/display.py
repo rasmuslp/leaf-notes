@@ -7,7 +7,6 @@ from display.waveshare_epd import epd2in13b_V3
 class Display:
     """Display - Facade for a Waveshare e-Paper / e-ink display"""
     def __init__(self):
-        # Both epd2in13bc and epd2in13b_V3 seem to work?! Assuming V3 is better..
         self.epd = epd2in13b_V3.EPD()
 
     def clear(self):

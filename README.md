@@ -6,6 +6,15 @@ Provided as a Docker image, that through SPI / GPIO controls an e-ink screen.
 
 ![CI](https://github.com/rasmuslp/leaf-notes/workflows/CI/badge.svg)
 
+## Hardware
+* Raspberry Pi Zero (W)
+* Waveshare e-ink display: 
+	https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_(B)
+    Specs:
+		* Colour: Black / Red / White
+        * Resolution: 212x104
+	Revision: 2.1 V3
+
 ## Getting started
 Create and activate virtual environment for packages
 ```

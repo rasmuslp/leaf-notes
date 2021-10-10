@@ -68,14 +68,21 @@ class MetnoRequester:
                                 proxies=proxies,
                                 verify=not PROXY_ENABLED)
 
-        data = response.json()
         if 200 <= response.status_code < 300:
+            try:
+                data = response.json()
+            except json.decoder.JSONDecodeError as error:
+                logger.error('Could not parse JSON data: %s', response)
+                raise error
+
             self.cache[argsHash] = {
                 'data': json.dumps(data),
                 'expires': response.headers['Expires'],
                 'lastModified': response.headers['Last-Modified']
             }
             logger.info('Caching new data for %s', url)
+
+            return data
 
         # 304 Not Modified
         if cached and response.status_code == 304:
@@ -85,7 +92,7 @@ class MetnoRequester:
         if response.status_code not in [200]:
             logger.warning('Metno API - Status Code %s: %s', response.status_code, data)
 
-        return data
+        raise ValueError(f'Unexpected response from API {response}')
 
     def isExpired(self, timestampString, offsetMinutes=None):
         """Check if timestamp is expired"""

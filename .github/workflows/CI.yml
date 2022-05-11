@@ -11,7 +11,7 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -38,7 +38,7 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -67,7 +67,7 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -95,57 +95,54 @@ jobs:
       - flake8
       - pylint
       - yamllint
+    permissions:
+      contents: read
+      packages: write
     env:
       PLATFORMS: linux/arm/v6
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Prepare
-        id: prep
-        run: |
-          DOCKER_IMAGE=ghcr.io/${GITHUB_REPOSITORY}
-          VERSION=latest
-          SHORTREF=${GITHUB_SHA::8}
+      - uses: actions/checkout@v3
 
-          # If this is git tag, use the tag name as a docker tag
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
-
-          # If the VERSION looks like a version number, assume that
-          # this is the most recent version of the image and also
-          # tag it 'latest'.
-          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            TAGS="$TAGS,${DOCKER_IMAGE}:latest"
-          fi
-
-          # Set output parameters.
-          echo ::set-output name=tags::${TAGS}
-          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          # For default priorities, see
+          # https://github.com/docker/metadata-action/blob/8d56fe93cf3fd680736a906389438c1ed74d75f7/src/tag.ts#L43
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}},priority=10000
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,priority=9000
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
         with:
           platforms: ${{ env.PLATFORMS }}
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+      - name: Login to the GitHub Container Registry
+        uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.CR_PAT }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           builder: ${{ steps.buildx.outputs.name }}
           platforms: ${{ env.PLATFORMS }}
           push: true
-          tags: ${{ steps.prep.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
 
   publish-alpine:
     runs-on: ubuntu-latest
@@ -154,55 +151,53 @@ jobs:
       - flake8
       - pylint
       - yamllint
+    permissions:
+      contents: read
+      packages: write
     env:
       PLATFORMS: linux/arm/v6
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Prepare
-        id: prep
-        run: |
-          DOCKER_IMAGE=ghcr.io/${GITHUB_REPOSITORY}
-          VERSION=latest
-          SHORTREF=${GITHUB_SHA::8}
+      - uses: actions/checkout@v3
 
-          # If this is git tag, use the tag name as a docker tag
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-          TAGS="${DOCKER_IMAGE}:${VERSION}-alpine,${DOCKER_IMAGE}:${SHORTREF}-alpine"
-
-          # If the VERSION looks like a version number, assume that
-          # this is the most recent version of the image and also
-          # tag it 'latest'.
-          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            TAGS="$TAGS,${DOCKER_IMAGE}:latest-alpine"
-          fi
-
-          # Set output parameters.
-          echo ::set-output name=tags::${TAGS}
-          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          flavor: |
+            suffix=-alpine,onlatest=true
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          # For default priorities, see
+          # https://github.com/docker/metadata-action/blob/8d56fe93cf3fd680736a906389438c1ed74d75f7/src/tag.ts#L43
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}},priority=10000
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,priority=9000
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
         with:
           platforms: ${{ env.PLATFORMS }}
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+      - name: Login to the GitHub Container Registry
+        uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.CR_PAT }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          file: alpine.dockerfile
           platforms: ${{ env.PLATFORMS }}
           push: true
-          tags: ${{ steps.prep.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}

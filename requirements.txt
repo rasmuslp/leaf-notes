@@ -10,7 +10,7 @@ certifi==2021.5.30
     # via requests
 charset-normalizer==2.0.6
     # via requests
-epdlib==0.5.0.4
+epdlib==0.5.1.1
     # via -r requirements.in
 idna==3.2
     # via requests
@@ -26,7 +26,7 @@ requests==2.26.0
     # via
     #   -r requirements.in
     #   epdlib
-rpi.gpio==0.7.1a4
+rpi-gpio==0.7.1a4
     # via
     #   -r requirements.in
     #   epdlib

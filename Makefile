@@ -26,3 +26,6 @@ sync.to-leaf:
 
 sync.from-leaf.requirements:
 	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ leaf.local:leaf-notes/requirements.txt requirements.txt
+
+build:
+	docker build -t leaf-notes:local .

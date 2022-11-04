@@ -28,18 +28,12 @@ pyflakes==2.5.0
     # via flake8
 pylint==2.15.5
     # via -r dev-requirements.in
-pyyaml==5.4.1
+pyyaml==6.0
     # via
     #   -c requirements.txt
     #   yamllint
-tomli==2.0.1
-    # via pylint
 tomlkit==0.11.6
     # via pylint
-typing-extensions==4.4.0
-    # via
-    #   astroid
-    #   pylint
 wrapt==1.14.1
     # via astroid
 yamllint==1.28.0

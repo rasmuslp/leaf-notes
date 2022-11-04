@@ -65,6 +65,7 @@ class MetnoRequester:
         response = requests.get(url,
                                 headers=headers,
                                 params=payload,
+                                timeout=30,
                                 proxies=proxies,
                                 verify=not PROXY_ENABLED)
 

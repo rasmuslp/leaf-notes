@@ -5,7 +5,36 @@ name: CI
 on: [push]
 
 jobs:
+  pydep:
+    name: Python dependencies
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
+      - name: Create .venv and install pip dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+
   flake8:
+    needs: pydep
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,6 +62,7 @@ jobs:
           flake8 .
 
   pylint:
+    needs: pydep
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -62,6 +92,7 @@ jobs:
           pylint notes
 
   yamllint:
+    needs: pydep
     runs-on: ubuntu-latest
     strategy:
       matrix:

@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url dev-requirements.in
 #
-astroid==2.12.12
+astroid==2.12.13
     # via pylint
 dill==0.3.6
     # via pylint
@@ -18,15 +18,15 @@ mccabe==0.7.0
     # via
     #   flake8
     #   pylint
-pathspec==0.10.1
+pathspec==0.10.2
     # via yamllint
-platformdirs==2.5.2
+platformdirs==2.5.4
     # via pylint
 pycodestyle==2.9.1
     # via flake8
 pyflakes==2.5.0
     # via flake8
-pylint==2.15.5
+pylint==2.15.6
     # via -r dev-requirements.in
 pyyaml==6.0
     # via

@@ -38,11 +38,11 @@ spidev==3.6
     # via
     #   -r requirements.in
     #   epdlib
-tzdata==2022.6
+tzdata==2022.7
     # via pytz-deprecation-shim
 tzlocal==4.2
     # via apscheduler
-urllib3==1.26.12
+urllib3==1.26.13
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:

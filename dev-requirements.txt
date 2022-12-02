@@ -8,7 +8,7 @@ astroid==2.12.13
     # via pylint
 dill==0.3.6
     # via pylint
-flake8==5.0.4
+flake8==6.0.0
     # via -r dev-requirements.in
 isort==5.10.1
     # via pylint
@@ -22,11 +22,11 @@ pathspec==0.10.2
     # via yamllint
 platformdirs==2.5.4
     # via pylint
-pycodestyle==2.9.1
+pycodestyle==2.10.0
     # via flake8
-pyflakes==2.5.0
+pyflakes==3.0.1
     # via flake8
-pylint==2.15.6
+pylint==2.15.7
     # via -r dev-requirements.in
 pyyaml==6.0
     # via

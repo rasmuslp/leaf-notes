@@ -26,14 +26,12 @@ pycodestyle==2.10.0
     # via flake8
 pyflakes==3.0.1
     # via flake8
-pylint==2.15.7
+pylint==2.15.8
     # via -r dev-requirements.in
 pyyaml==6.0
     # via
     #   -c requirements.txt
     #   yamllint
-tomli==2.0.1
-    # via pylint
 tomlkit==0.11.6
     # via pylint
 wrapt==1.14.1

@@ -1,4 +1,4 @@
-FROM python:3.10.8
+FROM python:3.11.1
 
 LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
 

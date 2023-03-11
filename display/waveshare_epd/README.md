@@ -2,4 +2,4 @@
 
 > https://github.com/waveshare/e-Paper
 
-Based on extract from https://github.com/waveshare/e-Paper/tree/1ac5cbad562ed58c678ba0d6f3f833612ec53320
+Based on extract from tree at this commit https://github.com/waveshare/e-Paper/commit/140a468ef7dd5ac37e61e004b3859c31a9711788

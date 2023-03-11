@@ -20,7 +20,7 @@ class EnvDefault(argparse.Action):
                 default = False
                 nargs = 0
             else:
-                raise ValueError('subAction not recognized: %s' % subAction)
+                raise ValueError(f'subAction not recognized: {subAction}')
 
         if envvar in os.environ:
             default = os.environ[envvar]

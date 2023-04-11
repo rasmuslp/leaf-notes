@@ -19,7 +19,7 @@ class Quote:
 
 
 def isQuoteDefinitionValid(quoteDefinition):
-    """Validate qoute definition"""
+    """Validate quote definition"""
 
     required = ['quote']
     requiredSatisfied = all(key in quoteDefinition.keys() for key in required)

@@ -1,5 +1,5 @@
 # Base definition
-FROM python:3.10.10-slim-bullseye as base
+FROM python:3.11.3-slim-bullseye as base
 
 LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
 

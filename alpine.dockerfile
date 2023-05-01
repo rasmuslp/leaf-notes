@@ -1,5 +1,5 @@
 # Base definition
-FROM python:3.10.10-alpine as base
+FROM python:3.11.3-alpine as base
 
 LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
 

@@ -130,7 +130,7 @@ jobs:
       contents: read
       packages: write
     env:
-      PLATFORMS: linux/arm/v6
+      PLATFORMS: linux/arm64
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
     steps:
@@ -186,7 +186,7 @@ jobs:
       contents: read
       packages: write
     env:
-      PLATFORMS: linux/arm/v6
+      PLATFORMS: linux/arm64
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
     steps:

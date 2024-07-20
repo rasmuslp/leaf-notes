@@ -25,10 +25,10 @@ sync.to-leaf:
 	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ --exclude=.ruff_cache/ . leaf.local:leaf-notes
 
 sync.from-leaf.requirements:
-	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ leaf.local:leaf-notes/requirements.txt requirements.txt
+	rsync -vha leaf.local:leaf-notes/requirements.txt requirements.txt
 
 sync.from-leaf.dev-requirements:
-	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ leaf.local:leaf-notes/dev-requirements.txt dev-requirements.txt
+	rsync -vha leaf.local:leaf-notes/dev-requirements.txt dev-requirements.txt
 
 build:
 	docker build -t leaf-notes:local .

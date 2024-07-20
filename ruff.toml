@@ -1,6 +1,7 @@
 target-version = "py310"
 
 exclude = [
+  ".venv",
   "display/waveshare_epd"
 ]
 

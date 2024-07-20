@@ -1,4 +1,5 @@
 """CLI helpers"""
+
 import copy
 from types import SimpleNamespace
 
@@ -7,16 +8,20 @@ from common.env_default import envDefault
 
 def addVerboseAndQuiet(mutualExclusiveGroup):
     """Add 'verbose' and 'quiet' options to group"""
-    mutualExclusiveGroup.add_argument('-v',
-                                      '--verbose',
-                                      action=envDefault('VERBOSE'),
-                                      subAction='store_true',
-                                      help='increase output verbosity')
-    mutualExclusiveGroup.add_argument('-q',
-                                      '--quiet',
-                                      action=envDefault('QUIET'),
-                                      subAction='store_true',
-                                      help='decrease verbosity to absolute minimum')
+    mutualExclusiveGroup.add_argument(
+        '-v',
+        '--verbose',
+        action=envDefault('VERBOSE'),
+        subAction='store_true',
+        help='increase output verbosity',
+    )
+    mutualExclusiveGroup.add_argument(
+        '-q',
+        '--quiet',
+        action=envDefault('QUIET'),
+        subAction='store_true',
+        help='decrease verbosity to absolute minimum',
+    )
 
 
 def unfoldArgValueIfArrayOneFrom(allArgs, toUnfold):

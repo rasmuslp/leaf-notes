@@ -24,7 +24,10 @@ def isQuoteDefinitionValid(quoteDefinition):
     required = ['quote']
     requiredSatisfied = all(key in quoteDefinition.keys() for key in required)
     if not requiredSatisfied:
-        logger.warning('"quote" needs to be defined, but is missing for object: %s', quoteDefinition)
+        logger.warning(
+            '"quote" needs to be defined, but is missing for object: %s',
+            quoteDefinition,
+        )
         return False
 
     return True

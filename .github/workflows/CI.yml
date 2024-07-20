@@ -62,7 +62,7 @@ jobs:
           pylint display
           pylint notes
 
-  ruff:
+  ruff-check:
     needs: pydep
     runs-on: ubuntu-latest
     strategy:
@@ -90,6 +90,35 @@ jobs:
         run: |
           source .venv/bin/activate
           ruff check --output-format=github .
+
+  ruff-format:
+    needs: pydep
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-${{ matrix.python-version }}pip-${{ hashFiles('requirements.txt') }}
+      - name: Create .venv and install pip dependencies
+        run: |
+          make init
+          source .venv/bin/activate
+          pip install -r dev-requirements.txt
+          pip install -r requirements.txt
+      - name: Format with ruff
+        run: |
+          source .venv/bin/activate
+          ruff format --check .
 
   yamllint:
     needs: pydep
@@ -124,7 +153,8 @@ jobs:
     if: contains(github.ref, 'refs/tags/v')
     needs:
       - pylint
-      - ruff
+      - ruff-check
+      - ruff-format
       - yamllint
     permissions:
       contents: read
@@ -180,7 +210,8 @@ jobs:
     if: contains(github.ref, 'refs/tags/v')
     needs:
       - pylint
-      - ruff
+      - ruff-check
+      - ruff-format
       - yamllint
     permissions:
       contents: read

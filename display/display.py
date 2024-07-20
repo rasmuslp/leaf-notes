@@ -6,6 +6,7 @@ from display.waveshare_epd import epd2in13b_V3
 
 class Display:
     """Display - Facade for a Waveshare e-Paper / e-ink display"""
+
     def __init__(self):
         self.epd = epd2in13b_V3.EPD()
 

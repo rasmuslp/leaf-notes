@@ -51,8 +51,10 @@ def render(args):
 
 def cli():
     """CLI definition and execution"""
-    programParser = argparse.ArgumentParser(description='Handles redering to an e-paper display over SPI on a Raspberry Pi',
-                                            allow_abbrev=False)
+    programParser = argparse.ArgumentParser(
+        description='Handles redering to an e-paper display over SPI on a Raspberry Pi',
+        allow_abbrev=False,
+    )
 
     verboseAndQuietGroup = programParser.add_mutually_exclusive_group()
     addVerboseAndQuiet(verboseAndQuietGroup)
@@ -62,35 +64,37 @@ def cli():
     commandParsers.add_parser('clear', help='Clear the screen')
 
     renderParser = commandParsers.add_parser('render', help='Render images to screen (clears before rendering)')
-    renderParser.add_argument('-b',
-                              '--black-image',
-                              nargs=1,
-                              action=envDefault('BLACK_IMAGE'),
-                              required=True,
-                              metavar='path',
-                              help='Path to black part of image, required')
-    renderParser.add_argument('-c',
-                              '--colour-image',
-                              nargs=1,
-                              action=envDefault('COLOUR_IMAGE'),
-                              required=True,
-                              metavar='path',
-                              help='Path to color part of image, required')
-    renderParser.add_argument('-r',
-                              '--rotate',
-                              default=0,
-                              action=envDefault('ROTATE'),
-                              nargs=1,
-                              type=int,
-                              metavar='degrees',
-                              help='Rotate image a number of degrees, defaults to 0')
+    renderParser.add_argument(
+        '-b',
+        '--black-image',
+        nargs=1,
+        action=envDefault('BLACK_IMAGE'),
+        required=True,
+        metavar='path',
+        help='Path to black part of image, required',
+    )
+    renderParser.add_argument(
+        '-c',
+        '--colour-image',
+        nargs=1,
+        action=envDefault('COLOUR_IMAGE'),
+        required=True,
+        metavar='path',
+        help='Path to color part of image, required',
+    )
+    renderParser.add_argument(
+        '-r',
+        '--rotate',
+        default=0,
+        action=envDefault('ROTATE'),
+        nargs=1,
+        type=int,
+        metavar='degrees',
+        help='Rotate image a number of degrees, defaults to 0',
+    )
 
     args = vars(programParser.parse_args())
-    argsToUnfold = [
-        'black_image',
-        'colour_image',
-        'rotate'
-    ]
+    argsToUnfold = ['black_image', 'colour_image', 'rotate']
     args = unfoldArgValueIfArrayOneFrom(args, argsToUnfold)
 
     setVerboseOrQuiet(args.verbose, args.quiet)

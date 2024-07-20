@@ -5,6 +5,8 @@ exclude = [
   "display/waveshare_epd"
 ]
 
+line-length = 120
+
 [lint]
 extend-select = [
   "UP",  # pyupgrade

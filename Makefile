@@ -6,10 +6,10 @@ init:
 	.venv/bin/python -m pip install pip-tools
 
 lint:
-	-flake8 .
 	-pylint common
 	-pylint display
 	-pylint notes
+	-ruff check .
 	-yamllint -s .
 
 reinstall-deps:
@@ -22,7 +22,7 @@ upgrade-dev-deps:
 	.venv/bin/python -m piptools compile --no-emit-index-url --upgrade dev-requirements.in
 
 sync.to-leaf:
-	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ . leaf.local:leaf-notes
+	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ --exclude=.ruff_cache/ . leaf.local:leaf-notes
 
 sync.from-leaf.requirements:
 	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ leaf.local:leaf-notes/requirements.txt requirements.txt

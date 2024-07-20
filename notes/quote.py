@@ -32,7 +32,7 @@ def isQuoteDefinitionValid(quoteDefinition):
 
 def loadQuotes(path):
     """Returns Quote objects loaded from provided yaml path"""
-    with open(path, 'r', encoding='utf-8') as fileStream:
+    with open(path, encoding='utf-8') as fileStream:
         try:
             quoteDefinitions = yaml.load(fileStream, Loader=yaml.SafeLoader)
         except yaml.YAMLError as exc:

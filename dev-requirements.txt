@@ -8,28 +8,22 @@ astroid==3.2.3
     # via pylint
 dill==0.3.8
     # via pylint
-flake8==7.1.0
-    # via -r dev-requirements.in
 isort==5.13.2
     # via pylint
 mccabe==0.7.0
-    # via
-    #   flake8
-    #   pylint
+    # via pylint
 pathspec==0.12.1
     # via yamllint
 platformdirs==4.2.2
     # via pylint
-pycodestyle==2.12.0
-    # via flake8
-pyflakes==3.2.0
-    # via flake8
 pylint==3.2.5
     # via -r dev-requirements.in
 pyyaml==6.0.1
     # via
     #   -c requirements.txt
     #   yamllint
+ruff==0.5.3
+    # via -r dev-requirements.in
 tomlkit==0.13.0
     # via pylint
 yamllint==1.35.1

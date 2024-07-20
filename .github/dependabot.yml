@@ -10,7 +10,7 @@ updates:
     directory: '/'
     ignore:
       - dependency-name: 'python'
-        versions: ['>3.11']
+        versions: ['>=3.12']
     schedule:
       interval: 'monthly'
 

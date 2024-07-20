@@ -1,13 +1,13 @@
 # leaf-notes
 
-> An application that generates information to be displayed on a small e-ink screen attached to a Raspberry Pi Zero W.
+> An application that generates information to be displayed on a small e-ink screen attached to a Raspberry Pi Zero 2 W.
 
 Provided as a Docker image, that through SPI / GPIO controls an e-ink screen.
 
 ![CI](https://github.com/rasmuslp/leaf-notes/workflows/CI/badge.svg)
 
 ## Hardware
-* Raspberry Pi Zero (W)
+* Raspberry Pi Zero 2 W
 * Waveshare e-ink display: 
 	https://www.waveshare.com/wiki/2.13inch_e-Paper_HAT_(B)
     Specs:
@@ -92,10 +92,10 @@ docker pull ghcr.io/rasmuslp/leaf-notes:<version>
 ```
 
 Run a one-time container.  
-Access to `gpiomem` and `spidev0.0` is required to communicate with the display. Quotes file needs to be mounted into the container.
+Access to `gpiochip0` and `spidev0.0` is required to communicate with the display. Quotes file needs to be mounted into the container.
 ```shell
 docker run -it --rm \
-	--device /dev/gpiomem \
+	--device /dev/gpiochip0 \
 	--device /dev/spidev0.0 \
 	-v /path-to/quotes.yml:/usr/src/app/quotes.yml:ro \
 	-e QUOTES_PATH=quotes.yml \

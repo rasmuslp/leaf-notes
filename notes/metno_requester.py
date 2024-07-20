@@ -1,8 +1,9 @@
 """Requester for Met.no's API"""
 
-from datetime import datetime, timedelta, timezone
 import json
 import logging
+from datetime import datetime, timedelta, timezone
+
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger

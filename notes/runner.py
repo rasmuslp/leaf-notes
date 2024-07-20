@@ -2,9 +2,9 @@
 
 import logging
 import random
-from string import Template
 import subprocess
 import sys
+from string import Template
 
 from notes.note import Note
 from notes.quote import loadQuotes

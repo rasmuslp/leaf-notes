@@ -1,6 +1,7 @@
 """Display module"""
 
 from PIL import Image
+
 from display.waveshare_epd import epd2in13b_V3
 
 

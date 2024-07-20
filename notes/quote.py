@@ -1,8 +1,8 @@
 """Quote module"""
 
-from dataclasses import dataclass
 import logging
 import sys
+from dataclasses import dataclass
 
 import yaml
 

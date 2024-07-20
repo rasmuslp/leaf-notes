@@ -2,6 +2,7 @@
 -c requirements.txt
 
 # Linting.
+ruff
 flake8
 pylint
 yamllint

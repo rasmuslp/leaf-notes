@@ -1,0 +1,18 @@
+target-version = "py310"
+
+exclude = [
+  "display/waveshare_epd"
+]
+
+[lint]
+extend-select = [
+  "UP",  # pyupgrade
+  "PL",  # pylint
+]
+ignore = [
+	"PLR0913",  # too-many-arguments
+	"PLR2004",  # magic-value-comparison
+]
+
+[format]
+quote-style = "single"

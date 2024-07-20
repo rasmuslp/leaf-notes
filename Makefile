@@ -6,7 +6,6 @@ init:
 	.venv/bin/python -m pip install pip-tools
 
 lint:
-	-flake8 .
 	-pylint common
 	-pylint display
 	-pylint notes

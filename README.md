@@ -127,17 +127,16 @@ make upgrade-deps
 * https://github.com/waveshare/e-Paper - eInk display interface
     * This installs deps for Jetson!
         * https://github.com/waveshare/e-Paper/blob/master/RaspberryPi_JetsonNano/python/setup.py
-    * Consider https://github.com/txoof/epdlib ??? - Rrequires spidev and RPi.GPIO, which cant install on mac.... 
+    * Consider https://github.com/txoof/epdlib ??? - Requires spidev and RPi.GPIO, which cant install on mac.... 
 * https://github.com/yaml/pyyaml/ - Yaml loader / (de)serializer
     * https://pyyaml.org/wiki/PyYAMLDocumentation
 * https://github.com/dbader/schedule - Scheduler
 	* https://pypi.org/project/schedule/
 	* https://schedule.readthedocs.io/en/stable/
-* https://github.com/PyCQA/flake8 - Tooling
-    * https://flake8.pycqa.org/en/latest/index.html
 * https://github.com/PyCQA/pylint - Tooling
     * List of builtin rules: http://pylint.pycqa.org/en/latest/technical_reference/features.html
     * `pylint --generate-rcfile | less` to generate a rules reference
+* https://github.com/astral-sh/ruff - Tooling
 * https://github.com/adrienverge/yamllint - Tooling
 
 ## Docker

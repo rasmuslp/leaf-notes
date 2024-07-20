@@ -3,6 +3,5 @@
 
 # Linting.
 ruff
-flake8
 pylint
 yamllint

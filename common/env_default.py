@@ -11,7 +11,16 @@ class EnvDefault(argparse.Action):
     vars. Defaults to requiring the argument."""
 
     # pylint: disable=too-many-arguments
-    def __init__(self, envvar, const=None, default=None, nargs=None, required=None, subAction=None, **kwargs):
+    def __init__(
+        self,
+        envvar,
+        const=None,
+        default=None,
+        nargs=None,
+        required=None,
+        subAction=None,
+        **kwargs,
+    ):
         self.subAction = None
         if subAction:
             self.subAction = subAction
@@ -39,6 +48,8 @@ class EnvDefault(argparse.Action):
 
 def envDefault(envvar):
     """functional sugar for EnvDefault"""
+
     def wrapper(**kwargs):
         return EnvDefault(envvar, **kwargs)
+
     return wrapper

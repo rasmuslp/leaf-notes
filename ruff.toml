@@ -5,8 +5,11 @@ exclude = [
   "display/waveshare_epd"
 ]
 
+line-length = 120
+
 [lint]
 extend-select = [
+  "I",   # isort
   "UP",  # pyupgrade
   "PL",  # pylint
 ]

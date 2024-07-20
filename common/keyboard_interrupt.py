@@ -1,4 +1,5 @@
 """Keyboard interrupt module"""
+
 import signal
 import sys
 

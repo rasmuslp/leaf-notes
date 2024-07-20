@@ -5,6 +5,7 @@ from notes.metno import Metno
 
 class Weather:
     """Gets weather information from Metno"""
+
     def __init__(self):
         self.metno = Metno()
 
@@ -20,19 +21,17 @@ class Weather:
                 'cloudAreaFraction': firstForecast['data']['instant']['details']['cloud_area_fraction'],
                 'relativeHumidity': firstForecast['data']['instant']['details']['relative_humidity'],
                 'windFromDirection': firstForecast['data']['instant']['details']['wind_from_direction'],
-                'windSpeed': firstForecast['data']['instant']['details']['wind_speed']
+                'windSpeed': firstForecast['data']['instant']['details']['wind_speed'],
             },
             'next1Hours': {
                 'symbolCode': firstForecast['data']['next_1_hours']['summary']['symbol_code'],
-                'precipitationAmount': firstForecast['data']['next_1_hours']['details']['precipitation_amount']
+                'precipitationAmount': firstForecast['data']['next_1_hours']['details']['precipitation_amount'],
             },
             'next6Hours': {
                 'symbolCode': firstForecast['data']['next_6_hours']['summary']['symbol_code'],
-                'precipitationAmount': firstForecast['data']['next_6_hours']['details']['precipitation_amount']
+                'precipitationAmount': firstForecast['data']['next_6_hours']['details']['precipitation_amount'],
             },
-            'next12Hours': {
-                'symbolCode': firstForecast['data']['next_12_hours']['summary']['symbol_code']
-            }
+            'next12Hours': {'symbolCode': firstForecast['data']['next_12_hours']['summary']['symbol_code']},
         }
 
         return forecast

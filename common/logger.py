@@ -1,11 +1,10 @@
 """Global logger configuration"""
+
 import logging
 
 LOGGER_FORMAT = '%(asctime)s %(levelname)s [%(name)s] {%(module)s} [%(funcName)s] %(message)s'
 
-logging.basicConfig(level=logging.INFO,
-                    format=LOGGER_FORMAT,
-                    datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(level=logging.INFO, format=LOGGER_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def setVerboseOrQuiet(verbose, quiet):

@@ -1,8 +1,9 @@
 """Requester for Met.no's API"""
 
-from datetime import datetime, timedelta, timezone
 import json
 import logging
+from datetime import datetime, timedelta, timezone
+
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
@@ -21,9 +22,7 @@ class MetnoRequester:
     """Request with caching"""
 
     def __init__(self):
-        self.headers = {
-            'User-Agent': 'leaf-notes/0.1.0 github.com/rasmuslp'
-        }
+        self.headers = {'User-Agent': 'leaf-notes/0.1.0 github.com/rasmuslp'}
         self.cache = {}
         self.metnoDateFormat = '%a, %d %b %Y %H:%M:%S %Z'
 
@@ -62,12 +61,14 @@ class MetnoRequester:
             headers['If-Modified-Since'] = cached['lastModified']
 
         logger.info('Checking for new data for %s', url)
-        response = requests.get(url,
-                                headers=headers,
-                                params=payload,
-                                timeout=30,
-                                proxies=proxies,
-                                verify=not PROXY_ENABLED)
+        response = requests.get(
+            url,
+            headers=headers,
+            params=payload,
+            timeout=30,
+            proxies=proxies,
+            verify=not PROXY_ENABLED,
+        )
 
         if 200 <= response.status_code < 300:
             try:
@@ -79,7 +80,7 @@ class MetnoRequester:
             self.cache[argsHash] = {
                 'data': json.dumps(data),
                 'expires': response.headers['Expires'],
-                'lastModified': response.headers['Last-Modified']
+                'lastModified': response.headers['Last-Modified'],
             }
             logger.info('Caching new data for %s', url)
 

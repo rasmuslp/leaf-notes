@@ -2,7 +2,7 @@
 
 import json
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -98,11 +98,11 @@ class MetnoRequester:
 
     def isExpired(self, timestampString, offsetMinutes=None):
         """Check if timestamp is expired"""
-        convertedTimestamp = datetime.strptime(timestampString, self.metnoDateFormat).replace(tzinfo=timezone.utc)
+        convertedTimestamp = datetime.strptime(timestampString, self.metnoDateFormat).replace(tzinfo=UTC)
         if offsetMinutes:
             convertedTimestamp = convertedTimestamp + timedelta(minutes=offsetMinutes)
 
-        now = datetime.now(tz=timezone.utc)
+        now = datetime.now(tz=UTC)
 
         delta = datetime.timestamp(convertedTimestamp) - datetime.timestamp(now)
 

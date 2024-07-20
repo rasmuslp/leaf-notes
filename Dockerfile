@@ -1,5 +1,5 @@
 # Base definition
-FROM python:3.10.14-slim-bookworm as base
+FROM python:3.10.14-slim-bookworm AS base
 
 LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
 
@@ -8,7 +8,7 @@ ENV VIRTUAL_ENV=/usr/src/app/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Builder
-FROM base as builder
+FROM base AS builder
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -26,7 +26,7 @@ RUN pip install --no-cache-dir --upgrade pip \
     && find "$VIRTUAL_ENV" -type d -name __pycache__ -prune -exec rm -rf '{}' \;
 
 # Runner
-FROM base as runner
+FROM base AS runner
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \

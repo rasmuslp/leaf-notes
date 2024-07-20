@@ -140,7 +140,7 @@ class Note:
             rawIcon = Image.open(iconPath).convert(mode='RGBA')
 
             # Down-scale and tweak raw icon
-            rawIcon.thumbnail(self.epdLayout.blocks['weatherIcon'].padded_area, Image.LANCZOS)
+            rawIcon.thumbnail(self.epdLayout.blocks['weatherIcon'].padded_area, Image.Resampling.LANCZOS)
             enhanced = ImageEnhance.Contrast(rawIcon).enhance(0.8)
             enhanced2 = ImageEnhance.Sharpness(enhanced).enhance(3)
 

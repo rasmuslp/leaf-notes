@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
-apscheduler==3.10.1
+apscheduler==3.10.4
     # via -r requirements.in
 certifi==2024.7.4
     # via requests
@@ -12,26 +12,28 @@ charset-normalizer==3.3.2
     # via requests
 colorzero==2.0
     # via gpiozero
-epdlib==0.6.1.1
+epdlib==0.6.5.1
     # via -r requirements.in
 gpiozero==2.0.1
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   epdlib
 idna==3.7
     # via requests
 lgpio==0.2.2.0
-    # via -r requirements.in
-pillow==9.5.0
+    # via
+    #   -r requirements.in
+    #   epdlib
+pillow==10.4.0
     # via
     #   -r requirements.in
     #   epdlib
 pytz==2024.1
     # via apscheduler
-pyyaml==6.0
+pyyaml==6.0.1
     # via -r requirements.in
-requests==2.28.2
-    # via
-    #   -r requirements.in
-    #   epdlib
+requests==2.32.3
+    # via -r requirements.in
 rpi-gpio==0.7.1
     # via epdlib
 six==1.16.0
@@ -42,7 +44,7 @@ spidev==3.6
     #   epdlib
 tzlocal==5.2
     # via apscheduler
-urllib3==1.26.19
+urllib3==2.2.2
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:

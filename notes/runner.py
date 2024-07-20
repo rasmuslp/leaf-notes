@@ -1,7 +1,7 @@
 """Runner that holds references and can run the core logic"""
 
 import logging
-import random
+import secrets
 import subprocess
 import sys
 from string import Template
@@ -19,6 +19,7 @@ class Runner:
     # pylint: disable=too-many-arguments,too-many-instance-attributes
     def __init__(
         self,
+        *,
         verbose=False,
         quiet=False,
         quotesPath=None,
@@ -43,7 +44,7 @@ class Runner:
         """Run the core logic"""
         logger.info('Run')
 
-        randomQuote = random.choice(self.quotes)
+        randomQuote = secrets.choice(self.quotes)
         logger.debug('Random quote %s', randomQuote)
 
         logger.info('Getting forecast')
@@ -95,7 +96,7 @@ class Runner:
             )
 
             try:
-                subprocess.run(displayArgs, check=True)
+                subprocess.run(displayArgs, check=True)  # noqa: S603
             except subprocess.CalledProcessError as exc:
                 logger.error('See above for details. %s', exc)
                 sys.exit(1)

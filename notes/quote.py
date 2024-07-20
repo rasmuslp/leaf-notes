@@ -3,6 +3,7 @@
 import logging
 import sys
 from dataclasses import dataclass
+from pathlib import Path
 
 import yaml
 
@@ -22,7 +23,7 @@ def isQuoteDefinitionValid(quoteDefinition):
     """Validate quote definition"""
 
     required = ['quote']
-    requiredSatisfied = all(key in quoteDefinition.keys() for key in required)
+    requiredSatisfied = all(key in quoteDefinition for key in required)
     if not requiredSatisfied:
         logger.warning(
             '"quote" needs to be defined, but is missing for object: %s',
@@ -35,13 +36,13 @@ def isQuoteDefinitionValid(quoteDefinition):
 
 def loadQuotes(path):
     """Returns Quote objects loaded from provided yaml path"""
-    with open(path, encoding='utf-8') as fileStream:
+    with Path(path).open(encoding='utf-8') as fileStream:
         try:
             quoteDefinitions = yaml.load(fileStream, Loader=yaml.SafeLoader)
         except yaml.YAMLError as exc:
             logger.error('Cannot parse %s %s', path, exc)
             sys.exit(1)
 
-    quotes = list(map(lambda data: Quote(**data), filter(isQuoteDefinitionValid, quoteDefinitions)))
+    quotes = [Quote(**data) for data in filter(isQuoteDefinitionValid, quoteDefinitions)]
 
     return quotes

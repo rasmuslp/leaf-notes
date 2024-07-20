@@ -94,7 +94,8 @@ class MetnoRequester:
         if response.status_code not in [200]:
             logger.warning('Metno API - Status Code %s: %s', response.status_code, data)
 
-        raise ValueError(f'Unexpected response from API {response}')
+        msg = f'Unexpected response from API {response}'
+        raise ValueError(msg)
 
     def isExpired(self, timestampString, offsetMinutes=None):
         """Check if timestamp is expired"""
@@ -106,10 +107,7 @@ class MetnoRequester:
 
         delta = datetime.timestamp(convertedTimestamp) - datetime.timestamp(now)
 
-        if delta < 0:
-            return True
-
-        return False
+        return delta < 0
 
     def cleanCache(self):
         """Clean cache by looking at 'expires' + an offset"""

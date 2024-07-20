@@ -2,7 +2,7 @@
 
 import argparse
 import logging
-import os
+from pathlib import Path
 
 from common.cli_helpers import addVerboseAndQuiet, unfoldArgValueIfArrayOneFrom
 from common.env_default import envDefault
@@ -14,14 +14,15 @@ logger = logging.getLogger(__name__)
 
 def chechPathExists(path):
     """Throw if path doesn't exist"""
-    if not os.path.exists(path):
+    if not Path(path).exists():
         raise FileNotFoundError(path)
 
 
 def checkValidRotation(rotationDegrees):
     """Throw if outside valid range: [0 - 359]"""
     if rotationDegrees < 0 or rotationDegrees > 359:
-        raise ValueError('Rotation should be between 0 and 359')
+        msg = 'Rotation should be between 0 and 359'
+        raise ValueError(msg)
 
 
 def clear():

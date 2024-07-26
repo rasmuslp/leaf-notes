@@ -1,8 +1,5 @@
 FROM python:3.11.9
 
-LABEL org.opencontainers.image.licenses=BSD-3-Clause
-LABEL org.opencontainers.image.source=https://github.com/rasmuslp/leaf-notes
-
 WORKDIR /usr/src/app
 ENV VIRTUAL_ENV=/usr/src/app/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

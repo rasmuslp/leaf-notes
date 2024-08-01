@@ -12,7 +12,7 @@ charset-normalizer==3.3.2
     # via requests
 colorzero==2.0
     # via gpiozero
-epdlib==0.6.5.1
+epdlib==0.6.5.2
     # via -r requirements.in
 gpiozero==2.0.1
     # via

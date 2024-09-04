@@ -6,11 +6,12 @@ init:
 	.venv/bin/python -m pip install pip-tools
 
 lint:
+	-ruff format --check .
+	-ruff check .
+	-yamllint -s .
 	-pylint common
 	-pylint display
 	-pylint notes
-	-ruff check .
-	-yamllint -s .
 
 reinstall-deps:
 	.venv/bin/python -m piptools sync requirements.txt dev-requirements.txt

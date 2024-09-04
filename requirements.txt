@@ -6,7 +6,7 @@
 #
 apscheduler==3.10.4
     # via -r requirements.in
-certifi==2024.7.4
+certifi==2024.8.30
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -18,7 +18,7 @@ gpiozero==2.0.1
     # via
     #   -r requirements.in
     #   epdlib
-idna==3.7
+idna==3.8
     # via requests
 lgpio==0.2.2.0
     # via
@@ -30,7 +30,7 @@ pillow==10.4.0
     #   epdlib
 pytz==2024.1
     # via apscheduler
-pyyaml==6.0.1
+pyyaml==6.0.2
     # via -r requirements.in
 requests==2.32.3
     # via -r requirements.in

@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url dev-requirements.in
 #
-astroid==3.2.4
+astroid==3.3.4
     # via pylint
 dill==0.3.8
     # via pylint
@@ -14,15 +14,15 @@ mccabe==0.7.0
     # via pylint
 pathspec==0.12.1
     # via yamllint
-platformdirs==4.2.2
+platformdirs==4.3.6
     # via pylint
-pylint==3.2.7
+pylint==3.3.1
     # via -r dev-requirements.in
 pyyaml==6.0.2
     # via
     #   -c requirements.txt
     #   yamllint
-ruff==0.6.3
+ruff==0.6.8
     # via -r dev-requirements.in
 tomlkit==0.13.2
     # via pylint

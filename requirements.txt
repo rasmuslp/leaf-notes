@@ -18,7 +18,7 @@ gpiozero==2.0.1
     # via
     #   -r requirements.in
     #   epdlib
-idna==3.8
+idna==3.10
     # via requests
 lgpio==0.2.2.0
     # via
@@ -28,7 +28,7 @@ pillow==10.4.0
     # via
     #   -r requirements.in
     #   epdlib
-pytz==2024.1
+pytz==2024.2
     # via apscheduler
 pyyaml==6.0.2
     # via -r requirements.in
@@ -44,7 +44,7 @@ spidev==3.6
     #   epdlib
 tzlocal==5.2
     # via apscheduler
-urllib3==2.2.2
+urllib3==2.2.3
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:

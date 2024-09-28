@@ -10,7 +10,7 @@ class EnvDefault(argparse.Action):
     """An argparse action class that auto-sets missing default values from env
     vars. Defaults to requiring the argument."""
 
-    # pylint: disable=too-many-arguments
+    # pylint: disable=too-many-arguments,too-many-positional-arguments
     def __init__(
         self,
         envvar,

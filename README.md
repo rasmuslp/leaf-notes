@@ -149,7 +149,6 @@ docker build -t leaf-notes:local-development -f dev.dockerfile .
 Build for production
 ```shell
 docker build -t leaf-notes:local .
-docker build -t leaf-notes:local-alpine -f alpine.dockerfile .
 ```
 
 ### Notes

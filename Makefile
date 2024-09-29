@@ -33,3 +33,6 @@ sync.from-leaf.dev-requirements:
 
 build:
 	docker build -t leaf-notes:local .
+
+build.arm64:
+	docker build --platform=linux/arm64 --no-cache -t leaf-notes:local-arm64 .

@@ -11,9 +11,6 @@ FROM base AS builder
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m venv "$VIRTUAL_ENV"
@@ -25,12 +22,6 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 # Runner
 FROM base AS runner
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        libfreetype6 \
-        libjpeg-turbo-progs \
-    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/src/app/.venv /usr/src/app/.venv
 

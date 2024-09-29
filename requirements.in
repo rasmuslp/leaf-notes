@@ -3,6 +3,5 @@ pyyaml
 requests
 Pillow
 gpiozero
-lgpio
 spidev
 epdlib

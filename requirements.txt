@@ -21,9 +21,7 @@ gpiozero==2.0.1
 idna==3.10
     # via requests
 lgpio==0.2.2.0
-    # via
-    #   -r requirements.in
-    #   epdlib
+    # via epdlib
 pillow==10.4.0
     # via
     #   -r requirements.in

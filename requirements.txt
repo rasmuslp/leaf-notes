@@ -8,7 +8,7 @@ apscheduler==3.10.4
     # via -r requirements.in
 certifi==2024.8.30
     # via requests
-charset-normalizer==3.3.2
+charset-normalizer==3.4.0
     # via requests
 colorzero==2.0
     # via gpiozero
@@ -22,7 +22,7 @@ idna==3.10
     # via requests
 lgpio==0.2.2.0
     # via epdlib
-pillow==10.4.0
+pillow==11.0.0
     # via
     #   -r requirements.in
     #   epdlib

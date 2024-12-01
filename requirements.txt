@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
-apscheduler==3.10.4
+apscheduler==3.11.0
     # via -r requirements.in
 certifi==2024.8.30
     # via requests
@@ -26,16 +26,12 @@ pillow==11.0.0
     # via
     #   -r requirements.in
     #   epdlib
-pytz==2024.2
-    # via apscheduler
 pyyaml==6.0.2
     # via -r requirements.in
 requests==2.32.3
     # via -r requirements.in
 rpi-gpio==0.7.1
     # via epdlib
-six==1.16.0
-    # via apscheduler
 spidev==3.6
     # via
     #   -r requirements.in

@@ -20,9 +20,9 @@ pylint==3.3.3
     # via -r dev-requirements.in
 pyyaml==6.0.2
     # via
-    #   -c /home/rasmus/leaf-notes/requirements.txt
+    #   -c requirements.txt
     #   yamllint
-ruff==0.8.4
+ruff==0.9.4
     # via -r dev-requirements.in
 tomlkit==0.13.2
     # via pylint

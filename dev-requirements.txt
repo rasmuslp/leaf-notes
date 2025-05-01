@@ -6,7 +6,7 @@
 #
 astroid==3.3.9
     # via pylint
-dill==0.3.9
+dill==0.4.0
     # via pylint
 isort==6.0.1
     # via pylint
@@ -22,7 +22,7 @@ pyyaml==6.0.2
     # via
     #   -c /home/rasmus/leaf-notes/requirements.txt
     #   yamllint
-ruff==0.11.2
+ruff==0.11.8
     # via -r dev-requirements.in
 tomlkit==0.13.2
     # via pylint

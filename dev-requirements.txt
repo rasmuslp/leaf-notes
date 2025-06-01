@@ -16,11 +16,11 @@ pathspec==0.12.1
     # via yamllint
 platformdirs==4.3.7
     # via pylint
-pylint==3.3.6
+pylint==3.3.7
     # via -r dev-requirements.in
 pyyaml==6.0.2
     # via
-    #   -c /home/rasmus/leaf-notes/requirements.txt
+    #   -c requirements.txt
     #   yamllint
 ruff==0.11.8
     # via -r dev-requirements.in

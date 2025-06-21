@@ -22,9 +22,9 @@ pyyaml==6.0.2
     # via
     #   -c /home/rasmus/leaf-notes/requirements.txt
     #   yamllint
-ruff==0.11.12
+ruff==0.12.0
     # via -r dev-requirements.in
-tomlkit==0.13.2
+tomlkit==0.13.3
     # via pylint
 yamllint==1.37.1
     # via -r dev-requirements.in

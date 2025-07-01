@@ -1,4 +1,4 @@
-FROM python:3.11.12
+FROM python:3.11.13
 
 WORKDIR /usr/src/app
 ENV VIRTUAL_ENV=/usr/src/app/.venv

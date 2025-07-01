@@ -22,7 +22,7 @@ idna==3.10
     # via requests
 lgpio==0.2.2.0
     # via epdlib
-pillow==11.2.1
+pillow==11.3.0
     # via
     #   -r requirements.in
     #   epdlib

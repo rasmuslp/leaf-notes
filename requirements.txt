@@ -32,7 +32,7 @@ requests==2.32.4
     # via -r requirements.in
 rpi-gpio==0.7.1
     # via epdlib
-spidev==3.7
+spidev==3.8
     # via
     #   -r requirements.in
     #   epdlib

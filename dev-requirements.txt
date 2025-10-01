@@ -18,9 +18,9 @@ platformdirs==4.3.8
     # via pylint
 pylint==3.3.7
     # via -r dev-requirements.in
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
-    #   -c /home/rasmus/leaf-notes/requirements.txt
+    #   -c requirements.txt
     #   yamllint
 ruff==0.12.7
     # via -r dev-requirements.in

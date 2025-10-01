@@ -28,7 +28,7 @@ pillow==11.3.0
     #   epdlib
 pyyaml==6.0.2
     # via -r requirements.in
-requests==2.32.4
+requests==2.32.5
     # via -r requirements.in
 rpi-gpio==0.7.1
     # via epdlib

@@ -8,52 +8,21 @@ exclude = [
 line-length = 120
 
 [lint]
-extend-select = [
-  "I",   # isort
-  "UP",  # pyupgrade
-  "YTT", # flake8-2020
-  "ASYNC", #flake8-async
-  "S",   # flake8-bandit
-  "BLE", # flake8-blind-except
-  "FBT", # flake8-boolean-trap
-  "B",   # flake8-bugbear
-  "A",   # flake8-builtins
-  "COM", # flake8-commas
-  "C4",  # flake8-comprehensions
-  "DTZ", # flake8-datetimez
-  "T10", # flake8-debugger
-  "EM",  # flake8-errmsg
-  "ISC", # flake8-implicit-str-concat
-  "ICN", # flake8-import-conventions
-  "LOG", # flake8-logging
-  "G",   # flake8-logging-format
-  "INP", # flake8-no-pep420
-  "PIE", # flake8-pie
-  "T20", # flake8-print
-  "PYI", # flake8-pyi
-  "Q",   # flake8-quotes
-  "RSE", # flake8-raise
-  "RET", # flake8-return
-  "SLF", # flake8-self
-  "SLOT", # flake8-slots
-  "SIM", # flake8-simplify
-  "TID", # flake8-tidy-imports
-  "TC", # flake8-type-checking
-  "PTH", # flake8-use-pathlib
-  "TD",  # flake8-todos
-  "FIX", # flake8-fixme
-  "PL",  # pylint
-  "FLY", # flynt
-  "PERF", # Perflint
-  "FURB", # refurb
-  "RUF", # Ruff-specific rules
+select = [
+  "ALL"
 ]
 ignore = [
+	"ANN",		# flake8-annotations
+	"ARG",		# flake8-unused-arguments
 	"COM812",   # missing-trailing-comma
+	"D",		# pydocstyle
+	"ERA",		# eradicate
 	"ISC001",   # single-line-implicit-string-concatenation
+	"N",		# pep8-naming
 	"RET504",   # unnecessary-assign
 	"PLR0913",  # too-many-arguments
 	"PLR2004",  # magic-value-comparison
+	"TRY", 		# tryceratops
 ]
 
 [lint.flake8-quotes]

@@ -8,21 +8,21 @@ astroid==3.3.11
     # via pylint
 dill==0.4.0
     # via pylint
-isort==6.0.1
+isort==6.1.0
     # via pylint
 mccabe==0.7.0
     # via pylint
 pathspec==0.12.1
     # via yamllint
-platformdirs==4.3.8
+platformdirs==4.4.0
     # via pylint
-pylint==3.3.7
+pylint==3.3.8
     # via -r dev-requirements.in
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   -c /home/rasmus/leaf-notes/requirements.txt
     #   yamllint
-ruff==0.12.7
+ruff==0.13.2
     # via -r dev-requirements.in
 tomlkit==0.13.3
     # via pylint

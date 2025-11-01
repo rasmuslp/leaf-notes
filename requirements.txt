@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
-apscheduler==3.11.0
+apscheduler==3.11.1
     # via -r requirements.in
 certifi==2025.8.3
     # via requests

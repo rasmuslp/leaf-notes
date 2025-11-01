@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url dev-requirements.in
 #
-astroid==3.3.11
+astroid==4.0.1
     # via pylint
 dill==0.4.0
     # via pylint
@@ -16,11 +16,11 @@ pathspec==0.12.1
     # via yamllint
 platformdirs==4.4.0
     # via pylint
-pylint==3.3.8
+pylint==4.0.2
     # via -r dev-requirements.in
 pyyaml==6.0.3
     # via
-    #   -c /home/rasmus/leaf-notes/requirements.txt
+    #   -c requirements.txt
     #   yamllint
 ruff==0.13.2
     # via -r dev-requirements.in

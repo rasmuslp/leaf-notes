@@ -1,5 +1,5 @@
 # Base definition
-FROM python:3.11.13-slim-bookworm AS base
+FROM python:3.11.14-slim-bookworm AS base
 
 WORKDIR /usr/src/app
 ENV VIRTUAL_ENV=/usr/src/app/.venv

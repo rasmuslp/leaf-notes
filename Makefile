@@ -17,10 +17,10 @@ reinstall-deps:
 	.venv/bin/python -m piptools sync requirements.txt dev-requirements.txt
 
 upgrade-deps:
-	.venv/bin/python -m piptools compile --no-emit-index-url --upgrade requirements.in
+	.venv/bin/python -m piptools compile --no-emit-index-url --strip-extras --upgrade requirements.in
 
 upgrade-dev-deps:
-	.venv/bin/python -m piptools compile --no-emit-index-url --upgrade dev-requirements.in
+	.venv/bin/python -m piptools compile --no-emit-index-url --strip-extras --upgrade dev-requirements.in
 
 sync.to-leaf:
 	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ --exclude=.ruff_cache/ . leaf.local:leaf-notes

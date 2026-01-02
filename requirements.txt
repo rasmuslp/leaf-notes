@@ -4,7 +4,7 @@
 #
 #    pip-compile --no-emit-index-url --strip-extras requirements.in
 #
-apscheduler==3.11.1
+apscheduler==3.11.2
     # via -r requirements.in
 certifi==2025.11.12
     # via requests
@@ -22,7 +22,7 @@ idna==3.11
     # via requests
 lgpio==0.2.2.0
     # via epdlib
-pillow==12.0.0
+pillow==12.1.0
     # via
     #   -r requirements.in
     #   epdlib
@@ -38,7 +38,7 @@ spidev==3.8
     #   epdlib
 tzlocal==5.3.1
     # via apscheduler
-urllib3==2.6.0
+urllib3==2.6.2
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:

@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
@@ -45,7 +45,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
@@ -75,7 +75,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
@@ -104,7 +104,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file
@@ -133,7 +133,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache pip
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           # Look to see if there is a cache hit for the corresponding requirements file

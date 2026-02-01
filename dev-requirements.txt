@@ -6,13 +6,13 @@
 #
 astroid==4.0.3
     # via pylint
-dill==0.4.0
+dill==0.4.1
     # via pylint
 isort==7.0.0
     # via pylint
 mccabe==0.7.0
     # via pylint
-pathspec==1.0.3
+pathspec==1.0.4
     # via yamllint
 platformdirs==4.5.1
     # via pylint
@@ -22,9 +22,9 @@ pyyaml==6.0.3
     # via
     #   -c requirements.txt
     #   yamllint
-ruff==0.14.11
+ruff==0.14.14
     # via -r dev-requirements.in
-tomlkit==0.13.3
+tomlkit==0.14.0
     # via pylint
-yamllint==1.37.1
+yamllint==1.38.0
     # via -r dev-requirements.in

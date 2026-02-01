@@ -26,5 +26,5 @@ ruff==0.14.11
     # via -r dev-requirements.in
 tomlkit==0.13.3
     # via pylint
-yamllint==1.37.1
+yamllint==1.38.0
     # via -r dev-requirements.in

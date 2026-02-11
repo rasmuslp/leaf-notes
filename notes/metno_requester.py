@@ -91,7 +91,7 @@ class MetnoRequester:
             logger.info('Data not modified for %s returning cached data', url)
             return json.loads(cached['data'])
 
-        if response.status_code not in [200]:
+        if response.status_code != 200:
             logger.warning('Metno API - Status Code %s: %s', response.status_code, data)
 
         msg = f'Unexpected response from API {response}'

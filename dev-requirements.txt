@@ -16,7 +16,7 @@ pathspec==1.0.4
     # via yamllint
 platformdirs==4.5.1
     # via pylint
-pylint==4.0.4
+pylint==4.0.5
     # via -r dev-requirements.in
 pyyaml==6.0.3
     # via

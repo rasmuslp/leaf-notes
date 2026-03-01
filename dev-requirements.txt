@@ -22,7 +22,7 @@ pyyaml==6.0.3
     # via
     #   -c requirements.txt
     #   yamllint
-ruff==0.15.0
+ruff==0.15.4
     # via -r dev-requirements.in
 tomlkit==0.14.0
     # via pylint

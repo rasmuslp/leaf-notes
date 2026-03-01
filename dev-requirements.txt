@@ -8,21 +8,21 @@ astroid==4.0.4
     # via pylint
 dill==0.4.1
     # via pylint
-isort==7.0.0
+isort==8.0.1
     # via pylint
 mccabe==0.7.0
     # via pylint
 pathspec==1.0.4
     # via yamllint
-platformdirs==4.5.1
+platformdirs==4.9.2
     # via pylint
-pylint==4.0.4
+pylint==4.0.5
     # via -r dev-requirements.in
 pyyaml==6.0.3
     # via
     #   -c requirements.txt
     #   yamllint
-ruff==0.15.0
+ruff==0.15.4
     # via -r dev-requirements.in
 tomlkit==0.14.0
     # via pylint

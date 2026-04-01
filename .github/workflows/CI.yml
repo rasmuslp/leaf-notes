@@ -181,7 +181,7 @@ jobs:
             type=sha,priority=9000
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: ${{ env.PLATFORMS }}
 

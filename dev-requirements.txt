@@ -14,7 +14,7 @@ mccabe==0.7.0
     # via pylint
 pathspec==1.0.4
     # via yamllint
-platformdirs==4.9.2
+platformdirs==4.9.4
     # via pylint
 pylint==4.0.5
     # via -r dev-requirements.in
@@ -22,7 +22,7 @@ pyyaml==6.0.3
     # via
     #   -c requirements.txt
     #   yamllint
-ruff==0.15.4
+ruff==0.15.9
     # via -r dev-requirements.in
 tomlkit==0.14.0
     # via pylint

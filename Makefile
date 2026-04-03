@@ -23,13 +23,13 @@ upgrade-dev-deps:
 	.venv/bin/python -m piptools compile --no-emit-index-url --strip-extras --upgrade dev-requirements.in
 
 sync.to-leaf:
-	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ --exclude=.ruff_cache/ . leaf.local:leaf-notes
+	rsync -vha --exclude=.git/ --exclude=.venv/ --exclude=.vscode/ --exclude=__pycache__/ --exclude=.ruff_cache/ . leaf:leaf-notes
 
 sync.from-leaf.requirements:
-	rsync -vha leaf.local:leaf-notes/requirements.txt requirements.txt
+	rsync -vha leaf:leaf-notes/requirements.txt requirements.txt
 
 sync.from-leaf.dev-requirements:
-	rsync -vha leaf.local:leaf-notes/dev-requirements.txt dev-requirements.txt
+	rsync -vha leaf:leaf-notes/dev-requirements.txt dev-requirements.txt
 
 build:
 	docker build -t leaf-notes:local .

@@ -13,8 +13,3 @@ updates:
         versions: ['>=3.12']
     schedule:
       interval: 'monthly'
-
-  - package-ecosystem: 'pip'
-    directory: '/'
-    schedule:
-      interval: 'monthly'

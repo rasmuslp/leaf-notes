@@ -6,19 +6,19 @@
 #
 apscheduler==3.11.3
     # via -r requirements.in
-certifi==2026.6.17
+certifi==2026.7.22
     # via requests
-charset-normalizer==3.4.9
+charset-normalizer==3.5.1
     # via requests
 colorzero==2.0
     # via gpiozero
 epdlib==0.6.5.2
     # via -r requirements.in
-gpiozero==2.0.1
+gpiozero==2.0.1.post3
     # via
     #   -r requirements.in
     #   epdlib
-idna==3.18
+idna==3.19
     # via requests
 lgpio==0.2.2.0
     # via epdlib

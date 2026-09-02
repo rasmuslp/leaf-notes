@@ -11,6 +11,7 @@ class EnvDefault(argparse.Action):
     vars. Defaults to requiring the argument."""
 
     # pylint: disable=too-many-arguments,too-many-positional-arguments
+    # ruff: ignore[PLR0917]
     def __init__(
         self,
         envvar,

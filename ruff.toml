@@ -15,6 +15,7 @@ ignore = [
 	"ANN",		# flake8-annotations
 	"ARG",		# flake8-unused-arguments
 	"COM812",   # missing-trailing-comma
+	"CPY001",   # missing-copyright-notice
 	"D",		# pydocstyle
 	"ERA",		# eradicate
 	"ISC001",   # single-line-implicit-string-concatenation

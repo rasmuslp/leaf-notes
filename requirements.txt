@@ -6,9 +6,9 @@
 #
 apscheduler==3.11.3
     # via -r requirements.in
-certifi==2026.7.22
+certifi==2026.10.23
     # via requests
-charset-normalizer==3.5.1
+charset-normalizer==3.5.2
     # via requests
 colorzero==2.0
     # via gpiozero
@@ -18,11 +18,11 @@ gpiozero==2.0.1.post3
     # via
     #   -r requirements.in
     #   epdlib
-idna==3.19
+idna==3.20
     # via requests
 lgpio==0.2.2.0
     # via epdlib
-pillow==12.3.0
+pillow==13.0.0
     # via
     #   -r requirements.in
     #   epdlib
@@ -36,9 +36,9 @@ spidev==3.8
     # via
     #   -r requirements.in
     #   epdlib
-tzlocal==5.4.4
+tzlocal==5.4.5
     # via apscheduler
-urllib3==2.7.0
+urllib3==2.8.0
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
